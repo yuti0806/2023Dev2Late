@@ -1,4 +1,4 @@
-name: Deployment for blog
+name: Deployment for lolipop
 
 on:
   push:
