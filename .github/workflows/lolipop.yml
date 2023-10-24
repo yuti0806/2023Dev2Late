@@ -1,0 +1,22 @@
+name: Deployment for blog
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: deploy to server
+      uses: burnett01/rsync-deployments@4.1
+      with:
+        switches: -avzr --delete
+        path: /04ソースコード/ # path to upload
+        remote_path: /var/www/html # path on server
+        remote_host: ${{ secrets.DEPLOY_HOST }} # server address
+        remote_port: ${{ secrets.DEPLOY_PORT }} # server port
+        remote_user: ${{ secrets.DEPLOY_USER }} # server user
+        remote_key: ${{ secrets.DEPLOY_KEY }} # server key
