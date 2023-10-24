@@ -1,5 +1,5 @@
 name: Deployment for lolipop
-
+# https://tech.pepabo.com/2020/03/11/github-actions-for-lolipop-and-heteml/
 on:
   push:
     branches:
@@ -10,13 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: deploy to server
-      uses: burnett01/rsync-deployments@4.1
+    - name: Deploy via FTP
+      uses: SamKirkland/FTP-Deploy-Action@3.0.0
       with:
-        switches: -avzr --delete
-        path: /04ソースコード/ # path to upload
-        remote_path: /var/www/html # path on server
-        remote_host: ${{ secrets.DEPLOY_HOST }} # server address
-        remote_port: ${{ secrets.DEPLOY_PORT }} # server port
-        remote_user: ${{ secrets.DEPLOY_USER }} # server user
-        remote_key: ${{ secrets.DEPLOY_KEY }} # server key
+        ftp-server: ${{ secrets.FTP_HOST }}
+        ftp-username: ${{ secrets.FTP_USERNAME }}
+        ftp-password: ${{ secrets.FTP_PASSWORD }}
+        git-ftp-args: --remote-root ${{ secrets.FTP_REMOTE_ROOT }}
+        local-dir: /04_ソースコード
