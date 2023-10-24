@@ -1,0 +1,21 @@
+name: Deployment for lolipop
+# https://tech.pepabo.com/2020/03/11/github-actions-for-lolipop-and-heteml/
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Deploy via FTP
+      uses: SamKirkland/FTP-Deploy-Action@4.3.3
+      with:
+        server: ${{ secrets.FTP_HOST }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        server-dir: ${{ secrets.FTP_REMOTE_ROOT }}
+#        local-dir: public/
+        local-dir: 04_ソースコード/
