@@ -14,7 +14,7 @@
                         $sql = "UPDATE user SET user_score = ? WHERE user_id = ?";
                         $ps = $pdo->prepare($sql);
                         $ps->bindValue(1,$new_score,PDO::PARAM_INT);
-                        $ps->bindValue(2,$_SESSION['user_id'],PDO::PARAM_INT);
+                        $ps->bindValue(2,$_SESSION['user_id'],PDO::PARAM_STR);
                         $ps->execute();
                     }
                 //}else{
