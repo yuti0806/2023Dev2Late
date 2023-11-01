@@ -18,4 +18,4 @@ jobs:
         password: ${{ secrets.FTP_PASSWORD }}
         server-dir: ${{ secrets.FTP_REMOTE_ROOT }}
 #        local-dir: public/
-        local-dir: 04_ソースコード/
+        local-dir: 04_ソースコード/public/
