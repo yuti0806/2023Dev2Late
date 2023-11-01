@@ -12,7 +12,7 @@ class DBmng
     {
         require_once 'Setting.php';
         $pdo = new PDO(
-            "mysql:host=" + Setting::$DBhost + ";dbname=" + Setting::$DBname + ";charset=utf8",
+            "mysql:host=" . Setting::$DBhost . ";dbname=" . Setting::$DBname . ";charset=utf8",
             Setting::$DBuser,
             Setting::$DBpass
         );
