@@ -22,8 +22,10 @@
             echo 'hello world';
             // DBmng.phpを読み込む
             // require_once(__DIR__ . '/DBmng.php');
+            echo 'read php';
             require_once $_SERVER['DOCUMENT_ROOT'] . '/backend//DBmng.php';
             // DBManagerクラスのインスタンスを生成する
+            echo 'access DBmng';
             $db = new DBmng();
             // DBManagerクラスのgetDB関数を実行する
             $pdo = $db->dbConnect();
