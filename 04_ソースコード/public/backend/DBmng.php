@@ -2,6 +2,12 @@
 require_once(__DIR__ . '/Setting.php');
 class DBmng
 {
+    private $DBhost = Setting::$DBhost;
+    private $DBname = Setting::$DBname;
+    private $DBuser = Setting::$DBuser;
+    private $DBpass = Setting::$DBpass;
+
+    // データベースに接続してPDOインスタンスを生成する関数
     public function dbConnect()
     {
         require_once 'Setting.php';
