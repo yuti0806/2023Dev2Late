@@ -1,7 +1,8 @@
 <?php
     class DBmng{
         public function dbConnect(){
-            $pdo = new PDO('mysql:host=218.phy.lolipop.lan;dbname=LAA1418747-devlate;charset=utf8','root','DevLate');
+            require_once 'Setting.php';
+            $pdo = new PDO("mysql:host=$DBhost;dbname=$DBname;charset=utf8","$DBuser","$DBpass");
             // テスト用 $pdo = new PDO('mysql:host=localhost;dbname=LAA1418747-devlate;charset=utf8','root','root');
             return $pdo;
         }
@@ -23,9 +24,7 @@
         public function updateScore($new_score){
             session_start();
             if(isset($_SESSION['user_id'])){
-                require_once 'GetUserScore.php';
-                $gus = new GetUserScore();
-                $now_score = $gus->getUserScore($_SESSION['user_id']);
+                $now_score = $this->getUserScore($_SESSION['user_id']);
                 if($new_score > $now_score){
                     $pdo = $this->dbConnect();
                     $sql = "UPDATE user SET user_score = ? WHERE user_id = ?";
