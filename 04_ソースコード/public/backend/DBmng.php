@@ -2,16 +2,20 @@
 require_once(__DIR__ . '/Setting.php');
 class DBmng
 {
-    private $DBhost = Setting::$DBhost;
-    private $DBname = Setting::$DBname;
-    private $DBuser = Setting::$DBuser;
-    private $DBpass = Setting::$DBpass;
+    private static $DBhost = Setting::$DBhost;
+    // private $DBname = Setting::$DBname;
+    // private $DBuser = Setting::$DBuser;
+    // private $DBpass = Setting::$DBpass;
 
     // データベースに接続してPDOインスタンスを生成する関数
     public function dbConnect()
     {
         require_once 'Setting.php';
-        $pdo = new PDO("mysql:host=" + $DBhost + ";dbname=" + $DBname + ";charset=utf8", "$DBuser", "$DBpass");
+        $pdo = new PDO(
+            "mysql:host=" + Setting::$DBhost + ";dbname=" + Setting::$DBname + ";charset=utf8",
+            Setting::$DBuser,
+            Setting::$DBpass
+        );
         // テスト用 $pdo = new PDO('mysql:host=localhost;dbname=LAA1418747-devlate;charset=utf8','root','root');
         return $pdo;
     }
