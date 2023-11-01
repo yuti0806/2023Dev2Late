@@ -2,7 +2,7 @@
 require_once(__DIR__ . '/Setting.php');
 class DBmng
 {
-    private static $DBhost = Setting::$DBhost;
+    // private $DBhost = Setting::$DBhost;
     // private $DBname = Setting::$DBname;
     // private $DBuser = Setting::$DBuser;
     // private $DBpass = Setting::$DBpass;
