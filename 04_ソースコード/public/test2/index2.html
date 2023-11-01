@@ -19,18 +19,18 @@
     <div id="container" class="container">
         <div class="row">
             <?php
-            echo 'hello world\n';
+            echo "hello world \n";
             // DBmng.phpを読み込む
             // require_once(__DIR__ . '/DBmng.php');
-            echo 'read php\n';
+            echo "read php \n";
             require_once $_SERVER['DOCUMENT_ROOT'] . '/backend//DBmng.php';
             // DBManagerクラスのインスタンスを生成する
-            echo 'new DBmng\n';
+            echo "new DBmng \n";
             $db = new DBmng();
             // DBManagerクラスのgetDB関数を実行する
-            echo 'access DBmng\n';
+            echo "access DBmng \n";
             $pdo = $db->dbConnect();
-            echo 'access DBmng done\n';
+            echo "access DBmng done\n";
             // データベースに接続できなかった場合
             if ($pdo == null) {
                 // エラーメッセージを表示する
