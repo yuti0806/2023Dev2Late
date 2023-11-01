@@ -11,7 +11,7 @@ class DBmng
     public function dbConnect()
     {
         require_once 'Setting.php';
-        $pdo = new PDO("mysql:host=$DBhost;dbname=$DBname;charset=utf8", "$DBuser", "$DBpass");
+        $pdo = new PDO("mysql:host=" + $DBhost + ";dbname=" + $DBname + ";charset=utf8", "$DBuser", "$DBpass");
         // テスト用 $pdo = new PDO('mysql:host=localhost;dbname=LAA1418747-devlate;charset=utf8','root','root');
         return $pdo;
     }
