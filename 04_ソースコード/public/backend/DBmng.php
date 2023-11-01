@@ -52,10 +52,9 @@
             // 重複していなければ登録する処理を行う
             $sql2 = "INSERT user (user_id, user_password, user_score) VALUES (?, ?, 0)";
             $ps = $pdo->prepare($sql2);
-            $ps->biadValue(1,$id,PDO::PARAM_STR);
+            $ps->bindValue(1,$id,PDO::PARAM_STR);
             $ps->bindValue(2,$pass,PDO::PARAM_STR);
             $ps->execute();
             return true;
         }
     }
-?>
