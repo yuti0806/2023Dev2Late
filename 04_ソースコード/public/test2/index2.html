@@ -19,6 +19,7 @@
     <div id="container" class="container">
         <div class="row">
             <?php
+            echo 'hello world';
             // DBmng.phpを読み込む
             require_once(__DIR__ . '/DBmng.php');
             // DBManagerクラスのインスタンスを生成する
@@ -37,9 +38,11 @@
                 // データベースに接続できたことを表示する
                 echo 'データベースに接続できました。';
             }
+            echo "goodbye world";
             ?>
         </div>
         <script src="tetris.js"></script>
+    </div>
 </body>
 
 </html>
