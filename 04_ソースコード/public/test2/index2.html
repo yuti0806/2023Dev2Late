@@ -25,9 +25,10 @@
             echo 'read php';
             require_once $_SERVER['DOCUMENT_ROOT'] . '/backend//DBmng.php';
             // DBManagerクラスのインスタンスを生成する
-            echo 'access DBmng';
+            echo 'new DBmng';
             $db = new DBmng();
             // DBManagerクラスのgetDB関数を実行する
+            echo 'access DBmng';
             $pdo = $db->dbConnect();
             // データベースに接続できなかった場合
             if ($pdo == null) {
