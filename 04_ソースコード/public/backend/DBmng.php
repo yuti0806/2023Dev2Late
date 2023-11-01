@@ -1,5 +1,5 @@
 <?php
-require_once(__DIR__ . 'Setting.php');
+require_once(__DIR__ . '/Setting.php');
 class DBmng
 {
     public function dbConnect()
