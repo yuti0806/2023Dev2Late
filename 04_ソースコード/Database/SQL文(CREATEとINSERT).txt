@@ -1,9 +1,12 @@
 CREATE TABLE user(
 user_id CHAR(7),
 user_password VARCHAR(20) NOT NULL,
-user_score VARCHAR(20) NOT NULL,
+user_score INT(20) NOT NULL,
 PRIMARY KEY (user_id)
 );
 
 INSERT INTO `user` (`user_id`, `user_password`, `user_score`) VALUES
 ('0000001', 'abcd1234', '3000');
+
+INSERT INTO `user` (`user_id`, `user_password`, `user_score`) VALUES
+('0000002', 'zxcv1234', '6000');
