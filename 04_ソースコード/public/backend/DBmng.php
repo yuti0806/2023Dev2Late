@@ -23,9 +23,11 @@ class DBmng
     // $pdo = $this->dbConnect();
 
     // スコア取得
-    public function getUserScoreById($id)
+    public function getUserScoreById($id, $pdo)
     {
-        $pdo = $this->dbConnect();
+        if(is_null($pdo)){
+            $pdo = $this->dbConnect();
+        }
         $sql = "SELECT user_id, user_score FROM user WHERE user_id = ?";
         $ps = $pdo->prepare($sql);
         $ps->bindValue(1, $id, PDO::PARAM_INT);
@@ -35,13 +37,15 @@ class DBmng
     }
 
     // スコア更新
-    public function updateScore($new_score)
+    public function updateScore($new_score, $pdo)
     {
         session_start();
+        if(is_null($pdo)){
+            $pdo = $this->dbConnect();
+        }
         if (isset($_SESSION['user_id'])) {
-            $now_score = $this->getUserScoreById($_SESSION['user_id']);
+            $now_score = $this->getUserScoreById($_SESSION['user_id'], $_SESSION['pdo']);
             if ($new_score > $now_score) {
-                $pdo = $this->dbConnect();
                 $sql = "UPDATE user SET user_score = ? WHERE user_id = ?";
                 $ps = $pdo->prepare($sql);
                 $ps->bindValue(1, $new_score, PDO::PARAM_INT);
@@ -54,7 +58,9 @@ class DBmng
     // 新規ユーザー登録
     public function userCreation($id, $pass)
     {
-        $pdo = $this->dbConnect();
+        if(is_null($pdo)){
+            $pdo = $this->dbConnect();
+        }
         // 既存のIDと重複していないかチェックする
         $sql1 = "SELECT user_id FROM user";
         $ps = $pdo->prepare($sql1);
