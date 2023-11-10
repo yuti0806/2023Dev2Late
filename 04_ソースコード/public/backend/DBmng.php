@@ -17,6 +17,7 @@ class DBmng
             Setting::$DBpass
         );
         // テスト用 $pdo = new PDO('mysql:host=localhost;dbname=LAA1418747-devlate;charset=utf8','root','root');
+        // $_SESSION['pdo'] = $pdo;
         return $pdo;
     }
 
@@ -56,7 +57,7 @@ class DBmng
     }
 
     // 新規ユーザー登録
-    public function userCreation($id, $pass)
+    public function userCreation($id, $pass, $pdo)
     {
         if(is_null($pdo)){
             $pdo = $this->dbConnect();
