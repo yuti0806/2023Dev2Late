@@ -82,8 +82,10 @@ class DBmng
     }
 
         //ログイン機能
-    public function getUserTblByIdPass($id,$pass){
-        $pdo = $this->dbConnect();
+    public function getUserTblByIdPass($id, $pass, $pdo){
+        if(is_null($pdo)){
+            $pdo = $this->dbConnect();
+        }
         $sql = "SELECT * FROM user WHERE user_id = ? AND user_pass = ?";
         $ps = $pdo->prepare($sql);
         $ps->bindValue(1,$id,PDO::PARAM_INT);
