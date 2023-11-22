@@ -31,7 +31,7 @@
         $answer =  $record['answer'];
         echo $question;
         $sql = "INSERT quiz (id, question, answers1, answers2, answers3, answer) VALUES (null, ?, ?, ?, ?, ?)";
-        $ps = $pdo->prepare($sql2);
+        $ps = $pdo->prepare($sql);
         $ps->bindValue(1, $question, PDO::PARAM_STR);
         $ps->bindValue(2, $answers[0], PDO::PARAM_STR);
         $ps->bindValue(3, $answers[1], PDO::PARAM_STR);
