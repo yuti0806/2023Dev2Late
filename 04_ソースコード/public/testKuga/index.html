@@ -24,22 +24,36 @@
 
   <hr>
   <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      get.addEventListener('click', (questions) => {
-        const quest = questions;
-        // const json = JSON.stringify({
-        //   "Language": "jp"
+    function Proc(questions) {
+      const quest = questions;
+      // const json = JSON.stringify({
+      //   "Language": "jp"
 
-        // });
-        const body = new FormData();
-        body.append('json', json);
-        const url = "api.php";
-        fetch(url, {
-          method: 'post',
-          body
-        }).then(res => res.text()).then(txt => out.textContent = txt);
-      });
-    });
+      // });
+      const body = new FormData();
+      body.append('json', json);
+      const url = "api.php";
+      fetch(url, {
+        method: 'post',
+        body
+      }).then(res => res.text()).then(txt => out.textContent = txt);
+    }
+    // window.addEventListener('DOMContentLoaded', () => {
+    //   get.addEventListener('click', (questions) => {
+    //     const quest = questions;
+    //     // const json = JSON.stringify({
+    //     //   "Language": "jp"
+
+    //     // });
+    //     const body = new FormData();
+    //     body.append('json', json);
+    //     const url = "api.php";
+    //     fetch(url, {
+    //       method: 'post',
+    //       body
+    //     }).then(res => res.text()).then(txt => out.textContent = txt);
+    //   });
+    // });
   </script>
   <input type="button" value="get" id="get">
   <div id="out"></div>
