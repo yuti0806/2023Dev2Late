@@ -1,7 +1,7 @@
 var SCORE = 0;
 function sendScore(Score){
     var jsonData = JSON.stringify(SCORE);
-    var xhr = new HMLHttpRequest();
+    var xhr = new XMLHttpRequest();
     xhr.open('POST', 'JsonDecode.php', true);
     xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
     xhr.send(jsonData);
