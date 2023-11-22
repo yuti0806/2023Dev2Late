@@ -16,6 +16,7 @@ $pdo = new PDO('mysql:host=mysql219.phy.lolipop.lan;dbname=LAA1563424-tetrisdb;c
     answer: 0
 }
 */
+var_dump($data);
 
 foreach ($data as $record) {
     $question =  $record['question'];
