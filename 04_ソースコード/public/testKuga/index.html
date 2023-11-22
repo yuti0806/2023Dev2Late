@@ -23,7 +23,8 @@
       fetch(url, {
         method: 'post',
         body
-      }).then(res => res.text()).then(txt => out.textContent = txt.replace(/\r?\n/g, '<br>'));
+        //      }).then(res => res.text()).then(txt => out.textContent = txt.replace(/\r?\n/g, '<br>'));
+      }).then(res => res.text()).then(txt => out.htmlContent = txt.replace(/\r?\n/g, '<br>'));
     }
   </script>
   <div id="out"></div>
