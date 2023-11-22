@@ -25,13 +25,13 @@
   <hr>
   <script>
     function my_proc(questions) {
-      const json = questions;
+      const jsonStr = JSON.stringify(questions);
       // const json = JSON.stringify({
       //   "Language": "jp"
 
       // });
       const body = new FormData();
-      body.append('json', json);
+      body.append('json', jsonStr);
       const url = "api.php";
       fetch(url, {
         method: 'post',
