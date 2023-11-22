@@ -43,9 +43,6 @@
         $ps->bindValue(6, $answer, PDO::PARAM_INT);
         $ps->execute();
     }
-    ?>
-
-
     /*
     class DBmng
     {
@@ -83,6 +80,7 @@
     }
     }
     */
+    ?>
 </body>
 
 </html>
