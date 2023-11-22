@@ -25,11 +25,11 @@
   <hr>
   <script>
     function my_proc(questions) {
-      const quest = questions;
-      // const json = JSON.stringify({
-      //   "Language": "jp"
+      // const quest = questions;
+      const json = JSON.stringify({
+        "Language": "jp"
 
-      // });
+      });
       const body = new FormData();
       body.append('json', json);
       const url = "api.php";
