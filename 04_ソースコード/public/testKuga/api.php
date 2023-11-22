@@ -6,7 +6,7 @@ $data = json_decode($jsonStr, true);
 // var_dump($data);
 // echo $data[0]['question'];
 
-// $pdo = new PDO('mysql:host=localhost;dbname=quizdb;charset=utf8', 'root', '');
+// 環境にあわせてかえること
 $db_hostname = "mysql219.phy.lolipop.lan";
 $db_name = "LAA1563424-tetrisdb";
 $db_user_name = "LAA1563424";
