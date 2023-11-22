@@ -25,7 +25,7 @@ foreach ($data as $record) {
     $question =  $record['question'];
     $answers =  $record['answers'];
     $answer =  $record['answer'];
-    echo nl2br($question . "\n"); // 挿入時の問題文だけ、確認代わりに結果画面に表示する
+    echo ($question . "\n"); // 挿入時の問題文だけ、確認代わりに結果画面に表示する
     $sql = "INSERT questions (id, question, answers1, answers2, answers3, answer) VALUES (null, ?, ?, ?, ?, ?)";
     $ps = $pdo->prepare($sql);
     $ps->bindValue(1, $question, PDO::PARAM_STR);
