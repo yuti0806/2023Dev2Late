@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <!-- quiz.jsを読み込む -->
+  <script src="quiz.js"></script>
+  <script>
+    // questionsの配列を作成
+    // alert(questions[0].question);
+  </script>
+
+
+</head>
+
+<body>
+  <p>レコードの挿入 テストページ</p>
+  <button onclick="alert('hello');">InsertRecord</button>
+  <a href="javascript:Proc();">InsertRecord</a><br />
+  <button onclick="alert(questions[0].question);">InsertRecord</button>
+
+
+
+  <hr>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      get.addEventListener('click', () => {
+        const json = JSON.stringify({
+          "Language": "jp"
+        });
+        const body = new FormData();
+        body.append('json', json);
+        const url = "api.php";
+        fetch(url, {
+          method: 'post',
+          body
+        }).then(res => res.text()).then(txt => out.textContent = txt);
+      });
+    });
+  </script>
+  <input type="button" value="get" id="get">
+  <div id="out"></div>
+</body>
+
+</html>
