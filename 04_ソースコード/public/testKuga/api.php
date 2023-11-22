@@ -1,6 +1,10 @@
 <?php
 // require_once(__DIR__ . '/Setting.php');
 $json = filter_input(INPUT_POST, "json");
+
+var_dump($json);
+
+
 $data = json_decode($json, true);
 // var_dump($data);
 $pdo = new PDO('mysql:host=mysql219.phy.lolipop.lan;dbname=LAA1563424-tetrisdb;charset=utf8', 'LAA1563424', 'A2gxAdmYNxUCDe7');
@@ -16,6 +20,7 @@ $pdo = new PDO('mysql:host=mysql219.phy.lolipop.lan;dbname=LAA1563424-tetrisdb;c
     answer: 0
 }
 */
+echo $data[0]['question'];
 var_dump($data);
 
 foreach ($data as $record) {
