@@ -8,7 +8,7 @@
     // require_once(__DIR__ . '/Setting.php');
     $json = filter_input(INPUT_POST, "json");
 
-    var_dump($json);
+    // var_dump($json);
 
 
     // $data = json_decode($json, true);
@@ -27,7 +27,7 @@
 }
 */
     echo $json[0]['question'];
-    var_dump($json);
+    // var_dump($json);
 
     foreach ($json as $record) {
         $question =  $record['question'];
