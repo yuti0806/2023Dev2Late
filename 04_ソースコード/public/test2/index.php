@@ -1,0 +1,156 @@
+<?php
+  session_start();
+  if(!isset($_SESSION['user_id'])){
+    header("Location:login.php");
+    exit();
+  }
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <title>テトリス！!</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"> -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* #container {
+      position: relative;
+      margin: auto;
+      width: 700px;
+    } */
+        .container-fruid{
+          /* position: relative; */
+          margin: auto;
+          max-width: 700px;
+        }
+
+        /* #next-canvas{
+          position: absolute; 
+          top: 0;
+          left:400px;
+          
+        } */
+
+        /* #img-howto2{
+          position: absolute;
+          left: 400px;
+          bottom: 1;
+        } */
+
+        /* #start-btn {
+          position: absolute;
+          left: 400px;
+          bottom: 0;
+          width: 180px;
+          text-align: center;
+          font-size: 16px;
+          color: #FFF;
+          text-decoration: none;
+          font-weight: bold;
+          padding: 12px 24px;
+          border:none;
+          border-radius: 30px;
+          background-image: linear-gradient(to top, #4b187b 0%, #9E8FFD 100%);
+          transition: .5s;
+          background-size: 200%;
+        } */
+
+        /* #logout-btn {
+          position: absolute;
+          left: 400px;
+          bottom: 1;
+          width: 180px;
+          text-align: center;
+          font-size: 16px;
+          color: #FFF;
+          text-decoration: none;
+          font-weight: bold;
+          padding: 12px 24px;
+          border:none;
+          border-radius: 30px;
+          background-image: linear-gradient(to top, #4b187b 0%, #9E8FFD 100%);
+          transition: .5s;
+          background-size: 200%;
+        } */
+        
+        
+
+        #start-btn:hover {
+          background-position: right center;
+        }
+
+        /*#logout-btn:hover {
+          background-position: right center;
+        }*/
+
+        /*.Button{
+          position: absolute;
+          left: 20px;
+          bottom: 5;
+          width: 140px;
+          font-size: 16px;
+          color: #FFF;
+          text-decoration: none;
+          font-weight: bold;
+          padding: 12px 24px;
+          border:none;
+          border-radius: 30px;
+          background-image: linear-gradient(to top, #4b187b 0%, #9E8FFD 100%);
+          transition: .5s;
+          background-size: 200%;
+        }
+
+        .button{
+          position: absolute;
+          bottom: 70px;
+          right: 120px;
+          width: 180px;
+          font-size: 16px;
+          color: #FFF;
+          text-decoration: none;
+          font-weight: bold;
+          padding: 12px 24px;
+          border:none;
+          border-radius: 30px;
+          background-image: linear-gradient(to top, #4b187b 0%, #9E8FFD 100%);
+          transition: .5s;
+          background-size: 200%;
+        }*/
+  </style>
+</head>
+
+<body>
+  <div id="container" class="container-fruid">
+    <div class="row row-cols-auto">
+      <div class="col-8">
+        <canvas id="main-canvas"></canvas>
+      </div>
+      <div class="col-4">
+        <div class="row-8">
+          <div>
+            <canvas id="next-canvas"></canvas>
+            <img id="img-howto2" src="images/howto.png" width="200rem">
+          </div>
+        </div>
+        <div class="row-4">
+            <div><button id="logout-btn" type="button" class="btn btn-danger btn-sm" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">ログアウト</button></div>
+            <div><button id="start-btn" type=" button" class="btn btn-primary btn-sm" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">スタート</button></div>
+        </div>
+      </div>
+      <!-- <div class="col-8">
+            <canvas id="main-canvas" class="float-end"></canvas>
+      </div> -->
+    </div>
+  </div>
+        <script src="tetris.js"></script>
+</body>
+
+</html>
