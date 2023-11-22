@@ -26,9 +26,11 @@
   <script>
     window.addEventListener('DOMContentLoaded', () => {
       get.addEventListener('click', () => {
-        const json = JSON.stringify({
-          "Language": "jp"
-        });
+        const quest = questions;
+        // const json = JSON.stringify({
+        //   "Language": "jp"
+
+        // });
         const body = new FormData();
         body.append('json', json);
         const url = "api.php";
