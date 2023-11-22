@@ -11,8 +11,8 @@
     // var_dump($json);
 
 
-    // $data = json_decode($json, true);
-    // var_dump($data);
+    $data = json_decode($json, true);
+    var_dump($data);
     $pdo = new PDO('mysql:host=mysql219.phy.lolipop.lan;dbname=LAA1563424-tetrisdb;charset=utf8', 'LAA1563424', 'A2gxAdmYNxUCDe7');
 
     /*
