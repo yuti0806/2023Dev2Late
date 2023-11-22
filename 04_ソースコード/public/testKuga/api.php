@@ -6,7 +6,12 @@ $data = json_decode($jsonStr, true);
 // var_dump($data);
 // echo $data[0]['question'];
 
-$pdo = new PDO('mysql:host=mysql219.phy.lolipop.lan;dbname=LAA1563424-tetrisdb;charset=utf8', 'LAA1563424', 'A2gxAdmYNxUCDe7');
+// $pdo = new PDO('mysql:host=localhost;dbname=quizdb;charset=utf8', 'root', '');
+$db_hostname = "mysql219.phy.lolipop.lan";
+$db_name = "LAA1563424-tetrisdb";
+$db_user_name = "LAA1563424";
+$db_password = "A2gxAdmYNxUCDe7";
+$pdo = new PDO(`mysql:host=$db_hostname;dbname=$db_name;charset=utf8`, $db_user_name, $db_password);
 
 /*
     JSONオブジェクトの形式は以下の複数オブジェクト例の配列になっています。
