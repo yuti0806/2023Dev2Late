@@ -2,12 +2,13 @@
     // require_once(__DIR__ . '/Setting.php');
     $json = filter_input(INPUT_POST, "json");
 
-    var_dump($json);
+    // var_dump($json);
 
 
     $data = json_decode($json, true);
-    echo $data[0]['question'];
     var_dump($data);
+    echo $data[0]['question'];
+
     $pdo = new PDO('mysql:host=mysql219.phy.lolipop.lan;dbname=LAA1563424-tetrisdb;charset=utf8', 'LAA1563424', 'A2gxAdmYNxUCDe7');
 
     /*
@@ -21,14 +22,14 @@
     answer: 0
 }
 */
-    echo $json[0]['question'];
+    // echo $json[0]['question'];
     // var_dump($json);
 
-    foreach ($json as $record) {
+    foreach ($data as $record) {
         $question =  $record['question'];
         $answers =  $record['answers'];
         $answer =  $record['answer'];
-
+        echo $question;
         $sql = "INSERT quiz (id, question, answers1, answers2, answers3, answer) VALUES (null, ?, ?, ?, ?, ?)";
         $ps = $pdo->prepare($sql2);
         $ps->bindValue(1, $question, PDO::PARAM_STR);
