@@ -1,9 +1,3 @@
-<html>
-
-<head>
-</head>
-
-<body>
     <?php
     // require_once(__DIR__ . '/Setting.php');
     $json = filter_input(INPUT_POST, "json");
@@ -82,6 +76,3 @@
     }
     */
     ?>
-</body>
-
-</html>
