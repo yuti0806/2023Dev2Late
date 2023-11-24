@@ -45,7 +45,7 @@ var questions = [
             '大学生',
         ],
         answer: 0
-    }
+    },
     {
         question: 'ギリシャ神話に登場する神で、雷を操る神は誰ですか？',
         answers: [
