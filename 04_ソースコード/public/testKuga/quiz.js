@@ -747,7 +747,7 @@ var questions = [
             'ニンジン',
         ],
         answer: 2
-    }
+    },
     {
         question: '「カーディガン」は、どんな人のために開発された服でしょうか？',
         answers: [
