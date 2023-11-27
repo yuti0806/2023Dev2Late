@@ -193,20 +193,20 @@ class Game {
         let endY = 0
 
         // 解説①：移動を開始した座標を取得
-        document.addEventListener('touchstart', (e) => {
+        this.addEventListener('touchstart', (e) => {
             startX = e.touches[0].pageX
             startY = e.touches[0].pageY
         })
 
         // 解説②：移動した座標を取得
-        document.addEventListener('touchmove', (e) => {
+        this.addEventListener('touchmove', (e) => {
             endX = e.changedTouches[0].pageX
             endY = e.changedTouches[0].pageY
         })
 
 
         // 解説③：移動距離から左右or上下の処理を実行
-        document.addEventListener('touchend', (e) => {
+        this.addEventListener('touchend', (e) => {
             // スワイプ終了時にx軸とy軸の移動量を取得
             // 左スワイプに対応するためMath.abs()で+に変換
             const distanceX = Math.abs(endX - startX)
