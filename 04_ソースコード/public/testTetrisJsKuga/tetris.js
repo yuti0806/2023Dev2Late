@@ -1,3 +1,5 @@
+const isTouchable = "ontouchstart" in window || (window.DocumentTouch && document instanceof DocumentTouch);
+
 const SATRT_BTN_ID = "start-btn"
 const MAIN_CANVAS_ID = "main-canvas"
 const NEXT_CANVAS_ID = "next-canvas"
@@ -93,10 +95,10 @@ class Game {
         this.timer = setInterval(() => this.dropMino(), 1000);
 
         // キーボードイベントの登録
-        this.setKeyEvent()
+        if (!isTouchable) this.setKeyEvent()
 
         // タッチイベントの登録
-        // this.setTouchEvent()
+        if (isTouchable) this.setTouchEvent();
     }
 
     // 新しいミノを読み込む
@@ -175,8 +177,6 @@ class Game {
                     if (this.valid(0, 0, 1)) this.mino.rotate();
                     break;
             }
-            //タッチイベントリスナーをセット
-            this.setTouchEvent();
             this.drawAll()
         }.bind(this)
     }
@@ -227,7 +227,8 @@ class Game {
                 // alert('上下スワイプ');
                 if (this.valid(0, 1)) this.mino.y++;
             }
-        })
+            this.drawAll()
+        });
     }
 
 }
