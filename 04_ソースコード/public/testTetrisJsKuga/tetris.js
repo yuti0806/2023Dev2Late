@@ -217,8 +217,10 @@ class Game {
             if (distanceX > distanceY && distanceX > minimumDistance) {
                 // スワイプ後の動作
                 // console.log('左右スワイプ')
-                // alert('左右スワイプ');
-                if (this.valid(-1, 0)) this.mino.x--;
+                // 右にスワイプしたとき右に移動
+                if (this.valid(-1, 0) && endX > startX) this.mino.x++;
+                // 左にスワイプしたとき左に移動
+                if (this.valid(1, 0) && endX < startX) this.mino.x--;
             }
 
             // 上下のスワイプ距離の方が左右より長い && 小さなスワイプは検知しないようにする
