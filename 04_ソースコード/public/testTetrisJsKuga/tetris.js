@@ -95,8 +95,8 @@ class Game {
         this.timer = setInterval(() => this.dropMino(), 1000);
 
         // キーボードイベントの登録
-        // if (!isTouchable) this.setKeyEvent();
-        this.setKeyEvent();
+        if (!isTouchable) this.setKeyEvent();
+        // this.setKeyEvent();
 
         // タッチイベントの登録
         if (isTouchable) this.setTouchEvent();
