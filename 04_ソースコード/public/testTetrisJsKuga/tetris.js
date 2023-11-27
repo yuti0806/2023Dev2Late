@@ -94,6 +94,9 @@ class Game {
 
         // キーボードイベントの登録
         this.setKeyEvent()
+
+        // タッチイベントの登録
+        this.setTouchEvent();
     }
 
     // 新しいミノを読み込む
@@ -211,15 +214,17 @@ class Game {
             // 左右のスワイプ距離の方が上下より長い && 小さなスワイプは検知しないようにする
             if (distanceX > distanceY && distanceX > minimumDistance) {
                 // スワイプ後の動作
-                console.log('左右スワイプ')
-                alert('左右スワイプ');
+                // console.log('左右スワイプ')
+                // alert('左右スワイプ');
+                if (this.valid(-1, 0)) this.mino.x--;
             }
 
             // 上下のスワイプ距離の方が左右より長い && 小さなスワイプは検知しないようにする
             if (distanceX < distanceY && distanceY > minimumDistance) {
                 // スワイプ後の動作
-                console.log('上下スワイプ')
-                alert('上下スワイプ');
+                // console.log('上下スワイプ')
+                // alert('上下スワイプ');
+                if (this.valid(0, 1)) this.mino.y++;
             }
         })
     }
