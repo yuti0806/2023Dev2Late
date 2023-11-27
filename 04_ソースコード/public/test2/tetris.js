@@ -1,10 +1,13 @@
 var SCORE = 0;
 function sendScore(Score){
-    var jsonData = JSON.stringify(SCORE);
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'JsonDecode.php', true);
-    xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-    xhr.send(jsonData);
+    const jsonStr = JSON.stringify(Score);
+    const body = new FormData();
+    body.append('json', jsonStr);
+    const url = 'JsonDecode.php';
+    fetch(url, {
+        method: 'post',
+        body
+      }).then(res => res.text()).then(console.log);
 }
 
 const SATRT_BTN_ID = "start-btn"
