@@ -1,6 +1,7 @@
 <?php
     session_start();
-    $data = json_decode(file_get_contents('php://input'), true);
+    $jsonStr = filter_input(INPUT_POST, "json");
+    $data = json_decode($jsonStr, true);
     if($data){
         require_once 'DMmng.php';
         $us = new updateScore($data, $_SESSION['pdo']);

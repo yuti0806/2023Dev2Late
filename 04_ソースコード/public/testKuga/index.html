@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <!-- quiz.jsを読み込む -->
+  <script src="quiz.js"></script>
+</head>
+
+<body>
+  <p>レコードの挿入 テストページ</p>
+  <!-- ボタンを押すとmy_proc()が実行される。questionsは quiz.js内で定義した問題文オブジェクト -->
+  <button onclick="my_proc(questions);">InsertRecord</button>
+
+  <hr>
+  <script>
+    function my_proc(questions) {
+      const jsonStr = JSON.stringify(questions);
+      const body = new FormData();
+      body.append('json', jsonStr);
+      const url = "api.php";
+      fetch(url, {
+        method: 'post',
+        body
+      }).then(res => res.text()).then(txt => out.innerHTML = txt.replace(/\r?\n/g, '<br>'));
+    }
+  </script>
+  <div id="out"></div>
+</body>
+
+</html>

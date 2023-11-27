@@ -1,0 +1,8 @@
+html{
+    overflow: hidden;
+  }
+body{
+/* height: 100vh; */
+overflow-y: auto;
+-webkit-overflow-scrolling: touch;
+}
