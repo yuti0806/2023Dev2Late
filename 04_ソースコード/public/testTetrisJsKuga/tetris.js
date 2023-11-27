@@ -230,7 +230,9 @@ class Game {
                 // alert('上下スワイプ');
                 if (this.valid(0, 1)) this.mino.y++;
             }
-            this.drawAll()
+            this.drawAll();
+            // イベントの伝播を止める
+            e.stopImmediatePropagation();
         });
     }
 
