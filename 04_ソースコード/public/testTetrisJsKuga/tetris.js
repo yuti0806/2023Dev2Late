@@ -96,7 +96,7 @@ class Game {
         this.setKeyEvent()
 
         // タッチイベントの登録
-        this.setTouchEvent()
+        // this.setTouchEvent()
     }
 
     // 新しいミノを読み込む
@@ -175,6 +175,8 @@ class Game {
                     if (this.valid(0, 0, 1)) this.mino.rotate();
                     break;
             }
+            //タッチイベントリスナーをセット
+            this.setTouchEvent();
             this.drawAll()
         }.bind(this)
     }
