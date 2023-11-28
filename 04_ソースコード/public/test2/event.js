@@ -30,11 +30,16 @@ function updatePoint(user_id) {
             // console.log("console.log(response);");
             // console.log(response);
             // console.log("console.log(response);");
-            let obj = response.json();
+            // let obj = response.json();
             // const parsed = JSON.parse(obj);
             // console.log(obj);
-            console.log(obj.PromiseResult);
-            updatedScoreDom.value = obj.PromiseResult.nowScore;
+
+            let text = response.text();
+            console.log(text);
+            text.then(response2 => {
+                console.log(response2);
+                updatedScoreDom.value = obj.PromiseResult.nowScore;
+            });
         })
         .then(resJsonObj => {
             // updatedScoreDom.value = resJsonObj.score;
