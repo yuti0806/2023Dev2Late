@@ -27,9 +27,12 @@ function updatePoint(user_id) {
         // レスポンスを画面にセット
         .then(response => {
             // updatedScoreDom.innerHTML = response.text();
-            updatedScoreDom.value = response.body.text();
+            // updatedScoreDom.value = response.body.text();
         })
-    // .then(text => { })
+        .then(value => {
+            // updatedScoreDom.innerHTML = response.text();
+            updatedScoreDom.value = value;
+        })
 
 
     // alert(newScore);
