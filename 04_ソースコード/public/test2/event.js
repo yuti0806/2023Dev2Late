@@ -28,6 +28,7 @@ function updatePoint(user_id) {
         .then(response => {
             // responseをJSONオブジェクトに変換
             let obj = response.json();
+            console.log(obj);
             updatedScoreDom.value = obj.score;
         })
         .then(resJsonObj => {
