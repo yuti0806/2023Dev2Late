@@ -5,8 +5,10 @@ session_start();
 require_once 'DBmng.php';
 // PDOの取得
 // $_SESSION['pdo'] = $cls->dbConnect();
-$pdo = $_SESSION['pdo'];
-if (is_null($pdo)) {
+// セッションにPDOがあるか確認する
+if (isset($_SESSION['pdo'])) {
+    $pdo = $_SESSION['pdo'];
+} else {
     $cls = new DBmng();
     $pdo = $cls->dbConnect();
     $_SESSION['pdo'] = $pdo;
