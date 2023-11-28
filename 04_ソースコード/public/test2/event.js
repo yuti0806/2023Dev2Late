@@ -8,6 +8,8 @@ function updatePoint(user_id) {
     let scoreDom = document.getElementById("userScore");
     // 現在のスコアを取得
     let newScore = scoreDom.value;
+    // 更新後のスコア表示覧
+    let updatedScoreDom = document.getElementById("updatedScore");
 
     // FormDataオブジェクトを作成
     var formData = new FormData();
@@ -23,9 +25,9 @@ function updatePoint(user_id) {
         body: formData  // ボディにFormDataを設定
     })
         // レスポンスを画面にセット
-        .then(response => scoreDom.value);
+        .then(response => updatedScoreDom.value);
 
-    alert(newScore);
+    // alert(newScore);
 }
 // id="updatePointBtn"にクリックイベントを追加
 document.getElementById("updatePointBtn").addEventListener("click", updatePoint);

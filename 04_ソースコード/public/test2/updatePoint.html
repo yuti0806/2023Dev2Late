@@ -20,7 +20,7 @@ $_SESSION['user_id'] = "abcd";
 
     <body class="text-center">
         <!-- イベントボタン -->
-        <div class="container">
+        <div class="container" margin-top: 30rem>
             <div class="row">
                 <div class="col-12">
                     点数
@@ -32,8 +32,13 @@ $_SESSION['user_id'] = "abcd";
                     <button id="updatePointBtn" type="button" class="btn btn-primary">イベントボタン</button>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-12">
+                    更新後点数
+                    <input id="updatedScore" type="text" value="<?= 100 ?>">
+                </div>
+            </div>
         </div>
-
     </body>
     <!-- ここにJavaScriptを記述 -->
     <script src="event.js"></script>
