@@ -38,7 +38,7 @@ function updatePoint(user_id) {
             console.log(text);
             text.then(response2 => {
                 console.log(response2);
-                updatedScoreDom.value = obj.PromiseResult.nowScore;
+                updatedScoreDom.value = response2;
             });
         })
         .then(resJsonObj => {
