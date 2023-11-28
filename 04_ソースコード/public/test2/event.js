@@ -30,7 +30,7 @@ function updatePoint(user_id) {
             let obj = response.json();
             // const parsed = JSON.parse(obj);
             console.log(obj);
-            updatedScoreDom.value = obj.promiseResult.nowScore;
+            updatedScoreDom.value = obj.PromiseResult.nowScore;
         })
         .then(resJsonObj => {
             // updatedScoreDom.value = resJsonObj.score;
