@@ -28,9 +28,9 @@ function updatePoint(user_id) {
         .then(response => {
             // responseをJSONオブジェクトに変換
             let obj = response.json();
-            const parsed = JSON.parse(obj);
-            console.log(parsed);
-            updatedScoreDom.value = parsed.nowScore;
+            // const parsed = JSON.parse(obj);
+            console.log(obj);
+            updatedScoreDom.value = obj.nowScore;
         })
         .then(resJsonObj => {
             // updatedScoreDom.value = resJsonObj.score;
