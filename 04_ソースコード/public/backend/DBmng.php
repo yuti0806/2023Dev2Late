@@ -46,9 +46,10 @@ class DBmng
         }
         if (isset($_SESSION['user_id'])) {
             $now_score = $this->getUserScoreById($_SESSION['user_id'], $pdo);
-            if ($new_score < $now_score) {
-                return;
-            }
+            // もし新しいスコアが現在のスコアより低ければ更新しない
+            // if ($new_score < $now_score) {
+            //     return;
+            // }
             $sql = "UPDATE user SET user_score = ? WHERE user_id = ?";
             $ps = $pdo->prepare($sql);
             $ps->bindValue(1, $new_score, PDO::PARAM_INT);
