@@ -45,7 +45,7 @@ class DBmng
             $pdo = $this->dbConnect();
         }
         if (isset($_SESSION['user_id'])) {
-            $now_score = $this->getUserScoreById($_SESSION['user_id'], $pdo);
+            // $now_score = $this->getUserScoreById($_SESSION['user_id'], $pdo);
             // もし新しいスコアが現在のスコアより低ければ更新しない
             // if ($new_score < $now_score) {
             //     return;
