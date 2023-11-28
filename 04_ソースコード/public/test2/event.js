@@ -23,9 +23,9 @@ function updatePoint(user_id) {
         body: formData  // ボディにFormDataを設定
     })
         // レスポンスを画面にセット
-        .then(response => $('#userScore').text(response));
+        .then(response => scoreDom.value);
 
-    alert(response);
+    alert(newScore);
 }
 // id="updatePointBtn"にクリックイベントを追加
 document.getElementById("updatePointBtn").addEventListener("click", updatePoint);
