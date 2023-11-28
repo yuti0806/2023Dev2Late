@@ -18,4 +18,4 @@ $cls->updateScore($_POST['newscore'], $pdo);
 $now_score = $cls->getUserScoreById($_SESSION['user_id'], $pdo);
 
 echo $now_score;
-echo 888;
+return 888;
