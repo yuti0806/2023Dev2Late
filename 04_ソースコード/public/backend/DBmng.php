@@ -45,7 +45,7 @@ class DBmng
             $pdo = $this->dbConnect();
         }
         if (isset($_SESSION['user_id'])) {
-            $now_score = $this->getUserScoreById($_SESSION['user_id'], $_SESSION['pdo']);
+            $now_score = $this->getUserScoreById($_SESSION['user_id'], $pdo);
             if ($new_score > $now_score) {
                 $sql = "UPDATE user SET user_score = ? WHERE user_id = ?";
                 $ps = $pdo->prepare($sql);
