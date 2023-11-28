@@ -25,7 +25,7 @@ function updatePoint(user_id) {
         // レスポンスを画面にセット
         .then(response => $('#userScore').text(response));
 
-    alert(newScore);
+    alert(response);
 }
 // id="updatePointBtn"にクリックイベントを追加
 document.getElementById("updatePointBtn").addEventListener("click", updatePoint);
