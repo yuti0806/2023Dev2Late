@@ -2,7 +2,7 @@
 // DBへアクセスして点数を更新するPHPを呼び出す処理
 
 // id="updatePointBtn" のボタンを押したときに実行される関数
-function updatePoint() {
+function updatePoint(user_id) {
     // ここに処理を追加してください
     // 例：id="point" のテキストを変更する
     let scoreDom = document.getElementById("userScore");
@@ -13,6 +13,7 @@ function updatePoint() {
     var formData = new FormData();
 
     // データを追加
+    formData.append("user_id", user_id);
     formData.append("newscore", newScore);
     // formData.append("key2", "value2");
 
