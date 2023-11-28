@@ -11,7 +11,7 @@ if (isset($_SESSION['pdo'])) {
 } else {
     $cls = new DBmng();
     $pdo = $cls->dbConnect();
-    $_SESSION['pdo'] = $pdo;
+    // $_SESSION['pdo'] = $pdo;
 }
 
 // 点数更新のメソッドを呼び出す

@@ -26,7 +26,7 @@ class DBmng
     // スコア取得
     public function getUserScoreById($id, $pdo)
     {
-        if(is_null($pdo)){
+        if (is_null($pdo)) {
             $pdo = $this->dbConnect();
         }
         $sql = "SELECT user_id, user_score FROM user WHERE user_id = ?";
@@ -40,8 +40,8 @@ class DBmng
     // スコア更新
     public function updateScore($new_score, $pdo)
     {
-        session_start();
-        if(is_null($pdo)){
+        // session_start();
+        if (is_null($pdo)) {
             $pdo = $this->dbConnect();
         }
         if (isset($_SESSION['user_id'])) {
@@ -59,7 +59,7 @@ class DBmng
     // 新規ユーザー登録
     public function userCreation($id, $pass, $pdo)
     {
-        if(is_null($pdo)){
+        if (is_null($pdo)) {
             $pdo = $this->dbConnect();
         }
         // 既存のIDと重複していないかチェックする
@@ -81,15 +81,16 @@ class DBmng
         return true;
     }
 
-        //ログイン機能
-    public function getUserTblByIdPass($id, $pass, $pdo){
-        if(is_null($pdo)){
+    //ログイン機能
+    public function getUserTblByIdPass($id, $pass, $pdo)
+    {
+        if (is_null($pdo)) {
             $pdo = $this->dbConnect();
         }
         $sql = "SELECT * FROM user WHERE user_id = ? AND user_pass = ?";
         $ps = $pdo->prepare($sql);
-        $ps->bindValue(1,$id,PDO::PARAM_INT);
-        $ps->bindValue(2,$pass,PDO::PARAM_STR);
+        $ps->bindValue(1, $id, PDO::PARAM_INT);
+        $ps->bindValue(2, $pass, PDO::PARAM_STR);
         $ps->execute();
         $searchArray = $ps->fetchAll();
         return $searchArray;
