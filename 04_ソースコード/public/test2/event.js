@@ -27,6 +27,7 @@ function updatePoint(user_id) {
         // レスポンスを画面にセット
         .then(response => {
             // responseをJSONオブジェクトに変換
+            console.log(response);
             let obj = response.json();
             // const parsed = JSON.parse(obj);
             console.log(obj);
