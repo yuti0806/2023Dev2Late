@@ -29,9 +29,9 @@ function updatePoint(user_id) {
             // updatedScoreDom.innerHTML = response.text();
             // updatedScoreDom.value = response.body.text();
         })
-        .then(value => {
+        .then(data => {
             // updatedScoreDom.innerHTML = response.text();
-            updatedScoreDom.value = value;
+            updatedScoreDom.value = data;
         })
 
 
