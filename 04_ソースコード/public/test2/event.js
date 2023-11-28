@@ -6,7 +6,7 @@ function updatePoint() {
     // ここに処理を追加してください
     // 例：id="point" のテキストを変更する
     let scoreDom = document.getElementById("userScore");
-    let oldScore = scoreDom.innerText;
+    let oldScore = scoreDom.value;
     alert(oldScore);
 }
 // id="updatePointBtn"にクリックイベントを追加
