@@ -17,4 +17,4 @@ $cls->updateScore($_POST['newscore'], $pdo);
 // 更新後に現在のスコアを取得する
 $now_score = $cls->getUserScoreById($_SESSION['user_id'], $pdo);
 
-return $now_score;
+echo $now_score;
