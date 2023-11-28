@@ -3,14 +3,18 @@
 session_start();
 // DBmngクラスのインスタンスを生成する
 require_once 'DBmng.php';
-$cls = new DBmng();
 // PDOの取得
 // $_SESSION['pdo'] = $cls->dbConnect();
+$pdo = $_SESSION['pdo'];
+if (is_null($pdo)) {
+    $cls = new DBmng();
+    $pdo = $cls->dbConnect();
+}
 
 // 点数更新のメソッドを呼び出す
-$cls->updateScore($_POST['userScore'], $_SESSION['pdo']);
+$cls->updateScore($_SESSION['user_id'], $_POST['userScore'], $pdo);
 
 // 更新後に現在のスコアを取得する
-$now_score = $cls->getUserScoreById($_SESSION['user_id'], $_SESSION['pdo']);
+$now_score = $cls->getUserScoreById($_SESSION['user_id'], $pdo);
 
 return $now_score;
