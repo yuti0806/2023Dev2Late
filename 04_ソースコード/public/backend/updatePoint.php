@@ -12,7 +12,7 @@ if (is_null($pdo)) {
 }
 
 // 点数更新のメソッドを呼び出す
-$cls->updateScore($_POST['userScore'], $pdo);
+$cls->updateScore($_POST['newscore'], $pdo);
 
 // 更新後に現在のスコアを取得する
 $now_score = $cls->getUserScoreById($_SESSION['user_id'], $pdo);
