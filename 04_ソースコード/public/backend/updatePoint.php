@@ -9,6 +9,7 @@ $pdo = $_SESSION['pdo'];
 if (is_null($pdo)) {
     $cls = new DBmng();
     $pdo = $cls->dbConnect();
+    $_SESSION['pdo'] = $pdo;
 }
 
 // 点数更新のメソッドを呼び出す
