@@ -11,4 +11,4 @@ function updatePoint() {
 // id="updatePointBtn"にクリックイベントを追加
 document.getElementById("updatePointBtn").addEventListener("click", updatePoint);
 
-
+alert("read done");
