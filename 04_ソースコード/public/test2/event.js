@@ -25,7 +25,10 @@ function updatePoint(user_id) {
         body: formData  // ボディにFormDataを設定
     })
         // レスポンスを画面にセット
-        .then(response => updatedScoreDom.value);
+        .then(response => {
+            // updatedScoreDom.innerHTML = response.text();
+            updatedScoreDom.value = response.text();
+        });
 
     // alert(newScore);
 }
