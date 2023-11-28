@@ -34,7 +34,7 @@ function updatePoint(user_id) {
                 console.log(response2);
                 // JSON形式の文字列が戻り値なので、オブジェクトに変換
                 let obj = JSON.parse(response2);
-                updatedScoreDom.value = obj.nowScore;
+                updatedScoreDom.innerHTML = obj.nowScore;
             });
         }).catch(error => {
             console.log(error);
