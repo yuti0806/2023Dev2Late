@@ -5,10 +5,11 @@
 function updatePoint() {
     // ここに処理を追加してください
     // 例：id="point" のテキストを変更する
-    document.getElementById("point").innerText = 100;
-    alert("OK");
+    let scoreDom = document.getElementById("userScore");
+    let oldScore = scoreDom.innerText;
+    alert(oldScore);
 }
 // id="updatePointBtn"にクリックイベントを追加
 document.getElementById("updatePointBtn").addEventListener("click", updatePoint);
 
-alert("read done");
+// alert("read done");
