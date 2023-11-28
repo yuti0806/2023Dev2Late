@@ -35,6 +35,7 @@ function updatePoint(user_id) {
             // console.log(obj);
 
             console.log(response.nowScore);
+
             let text = response.text();
             // console.log(text);
             text.then(response2 => {
