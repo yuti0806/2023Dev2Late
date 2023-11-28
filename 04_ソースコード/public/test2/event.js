@@ -28,7 +28,7 @@ function updatePoint(user_id) {
         .then(response => {
             // updatedScoreDom.innerHTML = response.text();
             // updatedScoreDom.value = response.body.text();
-            const data = response.results[0];
+            const data = JSON.stringify(response);
             updatedScoreDom.value = data;
 
         })
