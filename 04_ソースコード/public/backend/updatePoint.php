@@ -18,6 +18,7 @@ if (isset($_SESSION['pdo'])) {
 $cls->updateScore($_POST['newscore'], $pdo);
 
 // 更新後に現在のスコアを取得する
-$now_score = $cls->getUserScoreById($_SESSION['user_id'], $pdo);
-$rt = array('now_score' => $now_score);
-echo json_encode($rt); // json文字列形式にして返す
+$nowScore = $cls->getUserScoreById($_SESSION['user_id'], $pdo);
+// json文字列形式にして返す
+$rt = array('nowScore' => $nowScore);
+echo json_encode($rt);
