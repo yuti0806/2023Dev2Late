@@ -28,10 +28,13 @@ function updatePoint(user_id) {
         .then(response => {
             // updatedScoreDom.innerHTML = response.text();
             // updatedScoreDom.value = response.body.text();
+            const data = response.results[0];
+            updatedScoreDom.value = data;
+
         })
         .then(data => {
             // updatedScoreDom.innerHTML = response.text();
-            updatedScoreDom.value = data;
+            // updatedScoreDom.value = data;
         })
 
 
