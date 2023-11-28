@@ -27,12 +27,13 @@ function updatePoint(user_id) {
         // レスポンスを画面にセット
         .then(response => {
             // responseをJSONオブジェクトに変換
-            console.log("console.log(response);");
-            console.log(response);
-            console.log("console.log(response);");
+            // console.log("console.log(response);");
+            // console.log(response);
+            // console.log("console.log(response);");
             let obj = response.json();
             // const parsed = JSON.parse(obj);
-            console.log(obj);
+            // console.log(obj);
+            console.log(obj.PromiseResult);
             updatedScoreDom.value = obj.PromiseResult.nowScore;
         })
         .then(resJsonObj => {
