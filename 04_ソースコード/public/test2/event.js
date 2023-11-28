@@ -34,15 +34,13 @@ function updatePoint(user_id) {
             // const parsed = JSON.parse(obj);
             // console.log(obj);
 
+            console.log(response.nowScore);
             let text = response.text();
-            console.log(text);
+            // console.log(text);
             text.then(response2 => {
                 console.log(response2);
                 updatedScoreDom.value = response2;
             });
-        })
-        .then(resJsonObj => {
-            // updatedScoreDom.value = resJsonObj.score;
         })
 
 
