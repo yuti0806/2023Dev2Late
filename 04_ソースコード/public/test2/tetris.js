@@ -119,6 +119,10 @@ class Game{
             this.drawAll()
             clearInterval(this.timer)
             alert("ゲームオーバー")
+            if(newScore > nowScore){
+                const user_id = <?php json_encode(updatePoint($_SESSION['user_id']));?>;
+                updatePoint(user_id)
+            }
         }
     }
 
