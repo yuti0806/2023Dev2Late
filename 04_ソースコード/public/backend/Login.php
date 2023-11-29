@@ -20,7 +20,7 @@ if(empty($searchArray)){
 foreach($searchArray as $row){
     if($_POST['user_password'] == $row['user_password']){
         $_SESSION['user_id'] = $row['user_id'];
-        header('Location:../html/Top.html');
+        header('Location:../html/index.html');
       exit;
     } else {
       $_SESSION['loginError'] = "パスワードが正しくありません";
