@@ -1,6 +1,6 @@
-var Score = 0;
-function sendScore(Score){
-    const jsonStr = JSON.stringify(Score);
+var newScore = 0;
+function sendScore(newScore){
+    const jsonStr = JSON.stringify(newScore);
     const body = new FormData();
     body.append('json', jsonStr);
     const url = 'JsonDecode.php';
@@ -119,7 +119,7 @@ class Game{
             this.drawAll()
             clearInterval(this.timer)
             alert("ゲームオーバー")
-            if(Score > userScore){
+            if(newScore > userScore){
                 import {updatePoint} from 'event';
                 const user_id = <?php json_encode($_SESSION['user_id']);?>;
                 updatePoint(user_id);
