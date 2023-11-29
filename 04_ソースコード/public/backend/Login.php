@@ -11,7 +11,7 @@ if(empty($_POST['user_id'])){
   header('Location:../html/login.html');
   exit;
 }
-$searchArray = $cls->getUserTblByIdPass($_POST['user_id']);
+$searchArray = $cls->getUserTblByIdPass($_POST['user_id'],$_POST['user_password'],);
 if(empty($searchArray)){
     $_SESSION['loginError'] = "user idが存在しません";
       header('Location:../html/login.html');
