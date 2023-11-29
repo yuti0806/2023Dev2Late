@@ -1,9 +1,9 @@
 <?php
-  session_start();
-  if(!isset($_SESSION['user_id'])){
-    header("Location:login.php");
-    exit();
-  }
+session_start();
+if (!isset($_SESSION['user_id'])) {
+  header("Location:login.html");
+  exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -26,26 +26,26 @@
       margin: auto;
       width: 700px;
     } */
-        .container-fruid{
-          /* position: relative; */
-          margin: auto;
-          max-width: 700px;
-        }
+    .container-fruid {
+      /* position: relative; */
+      margin: auto;
+      max-width: 700px;
+    }
 
-        /* #next-canvas{
+    /* #next-canvas{
           position: absolute; 
           top: 0;
           left:400px;
           
         } */
 
-        /* #img-howto2{
+    /* #img-howto2{
           position: absolute;
           left: 400px;
           bottom: 1;
         } */
 
-        /* #start-btn {
+    /* #start-btn {
           position: absolute;
           left: 400px;
           bottom: 0;
@@ -63,7 +63,7 @@
           background-size: 200%;
         } */
 
-        /* #logout-btn {
+    /* #logout-btn {
           position: absolute;
           left: 400px;
           bottom: 1;
@@ -80,18 +80,18 @@
           transition: .5s;
           background-size: 200%;
         } */
-        
-        
 
-        #start-btn:hover {
-          background-position: right center;
-        }
 
-        /*#logout-btn:hover {
+
+    #start-btn:hover {
+      background-position: right center;
+    }
+
+    /*#logout-btn:hover {
           background-position: right center;
         }*/
 
-        /*.Button{
+    /*.Button{
           position: absolute;
           left: 20px;
           bottom: 5;
@@ -141,8 +141,8 @@
           </div>
         </div>
         <div class="row-4">
-            <div><button id="logout-btn" type="button" class="btn btn-danger btn-sm" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">ログアウト</button></div>
-            <div><button id="start-btn" type=" button" class="btn btn-primary btn-sm" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">スタート</button></div>
+          <div><button id="logout-btn" type="button" class="btn btn-danger btn-sm" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">ログアウト</button></div>
+          <div><button id="start-btn" type=" button" class="btn btn-primary btn-sm" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">スタート</button></div>
         </div>
       </div>
       <!-- <div class="col-8">
@@ -150,7 +150,7 @@
       </div> -->
     </div>
   </div>
-        <script src="tetris.js"></script>
+  <script src="tetris.js"></script>
 </body>
 
 </html>
