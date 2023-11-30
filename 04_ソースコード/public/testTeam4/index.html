@@ -21,11 +21,10 @@
   <?php foreach ($questions as $question) : ?>
     <?php echo $question['id']; ?><br>
     <?php echo $question['question']; ?></br>
-    <?php echo $question['question']; ?></br>
     <?php echo $question['answers1']; ?></br>
     <?php echo $question['answers2']; ?></br>
     <?php echo $question['answers3']; ?></br>
-    <?php echo "正解：" . $question['answers']; ?></br>
+    <?php echo "正解：" . $question['answer']; ?></br>
     <hr>
   <?php endforeach; ?>
 </body>
