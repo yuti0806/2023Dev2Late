@@ -34,16 +34,19 @@ class DBmng
         $sql = "SELECT * FROM questions WHERE id = ?";
         $ps = $pdo->prepare($sql);
         $questions = array();
+        $questionIds = array();
         foreach ($ids as $id) {
             $ps->bindValue(1, $id, PDO::PARAM_INT);
             $ps->execute();
             $searchArray = $ps->fetch();
             $questions[] = $searchArray;
+            $questionIds[] = $id;
         }
-        $questions = array();
-        foreach ($ids as $id) {
-            $questions[] = $id;
-        }
-        return $questions;
+        // $questions = array();
+        // foreach ($ids as $id) {
+        //     $questions[] = $id;
+        // }
+        // return $questions;
+        return $questionIds;
     }
 }
