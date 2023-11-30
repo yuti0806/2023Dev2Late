@@ -31,12 +31,12 @@ class DBmng
             $pdo = $this->dbConnect();
         }
 
-        $sql = "SELECT * FROM questions WHERE id = ?";
+        $sql = "SELECT * FROM questions WHERE id = :id";
         $ps = $pdo->prepare($sql);
         $questions = array();
         $questionIds = array();
         foreach ($ids as $id) {
-            $ps->bindValue($id, PDO::PARAM_INT);
+            $ps->bindValue(':id', $id, PDO::PARAM_INT);
             $ps->execute();
             $searchArray = $ps->fetch();
             $questions[] = $searchArray;
