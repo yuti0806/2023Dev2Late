@@ -22,7 +22,11 @@ class DBmng
         $ps = $pdo->prepare($sql);
         $ps->execute();
         $searchArray = $ps->fetchAll();
-        return $searchArray;
+        $ids = array();
+        foreach ($searchArray as $record) {
+            $ids[] = $record['id'];
+        }
+        return $ids;
     }
     // 指定された$idsの問題を取得する
     public function getQuestionsByIds($pdo, $ids)
