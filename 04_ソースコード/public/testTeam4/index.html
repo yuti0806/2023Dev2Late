@@ -14,7 +14,6 @@
   $db = new DBmng();
   $pdo = $db->dbConnect();
   $ids = $db->getRandomIds($pdo, 10);
-  $questions = $db->getQuestionsByIds($pdo, $ids);
 
   ?>
   <p>問題ID</p>
@@ -24,6 +23,7 @@
     <hr>
   <?php endforeach; ?>
   <p>問題文</p>
+  <?php $questions = $db->getQuestionsByIds($pdo, $ids);  ?>
   <?php foreach ($questions as $question) : ?>
     <p><?php echo $question['id']; ?></p>
     <p><?php echo $question['question']; ?></p>
