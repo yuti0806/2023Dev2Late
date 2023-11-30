@@ -4,10 +4,10 @@ class DBmng
     public function dbConnect()
     {
         // 環境にあわせてかえること
-        $db_hostname = "mysql219.phy.lolipop.lan";
-        $db_name = "LAA1563424-tetrisdb";
-        $db_user_name = "LAA1563424";
-        $db_password = "A2gxAdmYNxUCDe7";
+        $db_hostname = "mysql216.phy.lolipop.lan";
+        $db_name = "AA1417875-team4";
+        $db_user_name = "LAA1417875";
+        $db_password = "team4";
         $pdo = new PDO("mysql:host={$db_hostname};dbname={$db_name};charset=utf8", $db_user_name, $db_password);
         return $pdo;
     }
