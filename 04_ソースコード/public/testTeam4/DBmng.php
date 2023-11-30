@@ -46,7 +46,7 @@ class DBmng
         // foreach ($ids as $id) {
         //     $questions[] = $id;
         // }
-        // return $questions;
-        return $questionIds;
+        return $questions;
+        // return $questionIds;
     }
 }
