@@ -36,7 +36,7 @@ class DBmng
         $questions = array();
         $questionIds = array();
         foreach ($ids as $id) {
-            $ps->bindValue(1, $id, PDO::PARAM_INT);
+            $ps->bindValue($id, PDO::PARAM_INT);
             $ps->execute();
             $searchArray = $ps->fetch();
             $questions[] = $searchArray;
