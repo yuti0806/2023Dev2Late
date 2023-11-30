@@ -25,6 +25,7 @@
   <?php endforeach; ?>
   <p>問題文</p>
   <?php foreach ($questions as $question) : ?>
+    <p><?php echo $question['id']; ?></p>
     <p><?php echo $question['question']; ?></p>
   <?php endforeach; ?>
 
