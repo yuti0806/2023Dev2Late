@@ -16,19 +16,18 @@
   $ids = $db->getRandomIds($pdo, 10);
 
   ?>
-  <p>問題ID</p>
-  <?php foreach ($ids as $id) : ?>
-    <p><?php echo $id; ?></p>
-
-    <hr>
-  <?php endforeach; ?>
   <p>問題文</p>
   <?php $questions = $db->getQuestionsByIds($pdo, $ids);  ?>
   <?php foreach ($questions as $question) : ?>
-    <p><?php echo $question['id']; ?></p>
-    <p><?php echo $question['question']; ?></p>
+    <?php echo $question['id']; ?><br>
+    <?php echo $question['question']; ?></br>
+    <?php echo $question['question']; ?></br>
+    <?php echo $question['answers1']; ?></br>
+    <?php echo $question['answers2']; ?></br>
+    <?php echo $question['answers3']; ?></br>
+    <?php echo "正解：" . $question['answers']; ?></br>
+    <hr>
   <?php endforeach; ?>
-
 </body>
 
 </html>
