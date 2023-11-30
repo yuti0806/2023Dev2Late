@@ -40,6 +40,10 @@ class DBmng
             $searchArray = $ps->fetch();
             $questions[] = $searchArray;
         }
+        $questions = array();
+        foreach ($ids as $id) {
+            $questions[] = $id;
+        }
         return $questions;
     }
 }
