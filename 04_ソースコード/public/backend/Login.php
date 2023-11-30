@@ -11,7 +11,7 @@ if(empty($_POST['user_id'])){
   header('Location:../html/login.html');
   exit;
 }
-$searchArray = $cls->getUserTblByIdPass($_POST['user_id']);
+$searchArray = $cls->getUserTblByIdPass($_POST['user_id'],$_POST['user_password'],);
 if(empty($searchArray)){
     $_SESSION['loginError'] = "user idが存在しません";
       header('Location:../html/login.html');
@@ -20,7 +20,7 @@ if(empty($searchArray)){
 foreach($searchArray as $row){
     if($_POST['user_password'] == $row['user_password']){
         $_SESSION['user_id'] = $row['user_id'];
-        header('Location:../html/Top.html');
+        header('Location:../html/index.html');
       exit;
     } else {
       $_SESSION['loginError'] = "パスワードが正しくありません";
