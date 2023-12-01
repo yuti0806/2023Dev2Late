@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>テスト10問</title>
+  <!-- quiz.jsを読み込む -->
+  <!--  <script src="quiz.js"></script> -->
+</head>
+
+<body>
+  <?php
+  require_once(__DIR__ . '/DBmng.php');
+  $db = new DBmng();
+  $pdo = $db->dbConnect();
+  $ids = $db->getRandomIds($pdo, 10);
+  ?>
+  <p>問題文</p>
+  <?php $questions = $db->getQuestionsByIds($pdo, $ids);  ?>
+  <?php foreach ($questions as $question) : ?>
+    <?php echo $question['id']; ?><br>
+    <?php echo $question['question']; ?></br>
+    <?php echo $question['answers1']; ?></br>
+    <?php echo $question['answers2']; ?></br>
+    <?php echo $question['answers3']; ?></br>
+    <?php echo "正解：" . $question['answer'] + 1; ?></br>
+    <hr>
+  <?php endforeach; ?>
+</body>
+
+</html>
