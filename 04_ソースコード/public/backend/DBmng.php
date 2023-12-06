@@ -35,7 +35,8 @@ class DBmng
         $ps->execute();
         $searchArray = $ps->fetch();
         // return $searchArray['user_score'];
-        return $searchArray['user_id'];
+        // return $searchArray['user_id'];
+        return $id;
     }
 
     // スコア更新
