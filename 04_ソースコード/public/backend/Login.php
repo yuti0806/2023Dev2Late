@@ -21,6 +21,7 @@ foreach ($searchArray as $row) {
   if ($_POST['user_password'] == $row['user_password']) {
     $_SESSION['user_id'] = $row['user_id'];
     header('Location:../test2/index.html');
+    $cls->getUserScoreById($_POST['user_id'], $pdo);
     exit;
   } else {
     $_SESSION['loginError'] = "パスワードが正しくありません";
