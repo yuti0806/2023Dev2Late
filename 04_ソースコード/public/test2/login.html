@@ -39,6 +39,7 @@ session_start();
         <?php if (isset($_SESSION['loginError'])) { ?>
             <p class="alert alert-danger"><?php echo $_SESSION['loginError']; ?></p>
         <?php
+            $_SESSION['loginError'] = null;
             unset($_SESSION['loginError']);
         }  ?>
         <form action="../backend/Login.php" method="post">
