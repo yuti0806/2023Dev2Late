@@ -31,12 +31,10 @@ class DBmng
         }
         $sql = "SELECT user_id, user_score FROM user WHERE user_id = ?";
         $ps = $pdo->prepare($sql);
-        $ps->bindValue(1, $id, PDO::PARAM_INT);
+        $ps->bindValue(1, $id, PDO::PARAM_STR);
         $ps->execute();
         $searchArray = $ps->fetch();
-        // return $searchArray['user_score'];
-        // return $searchArray['user_id'];
-        return $id;
+        return $searchArray['user_id'];
     }
 
     // スコア更新
