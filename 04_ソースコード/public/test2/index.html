@@ -138,7 +138,7 @@ if (!isset($_SESSION['user_id'])) {
           require_once '../backend/DBmng.php';
           $cls = new DBmng();
           $highscore = $cls->getUserScoreById($_SESSION['user_id'], $pdo);
-          $_SESSION['user_score'] = 9; // 今回の得点
+          $_SESSION['user_score'] = 3; // 今回の得点
           ?>
           <p id="highscore">ハイスコア：<?= $highscore ?></p>
           <p id="user_score">スコア：<?= $_SESSION['user_score'] ?></p>
