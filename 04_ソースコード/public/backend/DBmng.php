@@ -34,7 +34,7 @@ class DBmng
         $ps->bindValue(1, $id, PDO::PARAM_INT);
         $ps->execute();
         $searchArray = $ps->fetch();
-        return $searchArray[0]['user_score'];
+        return $searchArray['user_score'];
     }
 
     // スコア更新
