@@ -141,10 +141,11 @@ if (!isset($_SESSION['user_id'])) {
             $userScore = $cls->getUserScoreById($_SESSION['user_id'], $pdo);
             $highscore = $userScore;
             $_SESSION['user_score'] = 0; // 今回の得点
-          }else{
-            if($_SESSION['user_score'] > $highscore){
+          } else {
+            if ($_SESSION['user_score'] > $highscore) {
               $highscore = $_SESSION['user_score'];
             }
+          }
           ?>
           <p id="highscore">ハイスコア：<?= $highscore ?></p>
           <!-- <p id="highscore">ハイスコア：<?= 0 ?></p> -->
