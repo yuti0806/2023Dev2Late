@@ -5,12 +5,11 @@ if (empty($_POST['user_id'])) {
       $_SESSION['createError'] = "user idを入力してください";
       header('Location:../test2/newcreate.html');
       exit;
-    } else if (empty($_POST['user_password'])) {
+} else if (empty($_POST['user_password'])) {
       $_SESSION['createError'] = "Passwordを入力してください";
       header('Location:../test2/newcreate.html');
       exit;
-    }
-}    
+}
 
 require_once 'DBmng.php';
 $cls = new DBmng();
