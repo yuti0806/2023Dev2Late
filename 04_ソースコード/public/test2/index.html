@@ -129,6 +129,9 @@ if (!isset($_SESSION['user_id'])) {
 
 <body>
   <div id="container" class="container-fruid">
+    <div>
+      <p><?= "ようこそ {$_SESSION["user_id"]} さん" ?></p>
+    </div>
     <div class="row row-cols-auto">
       <div class="col-8">
         <canvas id="main-canvas"></canvas>
@@ -146,13 +149,13 @@ if (!isset($_SESSION['user_id'])) {
         </div>
         <div>
           <?php
-            if(!isset($_SESSION['user_score'])){
-              require_once './backend/DBmng.php';
-              $cls = new DBmng();
-              $userScore = $cls->getUserScoreById($_SESSION['user_id'], $pdo);
-              $_SESSION['user_score'] = $userScore;
-            }
-            echo 'ハイスコア：<labal id="userScore">'.$_SESSION['user_score'].'</labal>';
+          if (!isset($_SESSION['user_score'])) {
+            require_once './backend/DBmng.php';
+            $cls = new DBmng();
+            $userScore = $cls->getUserScoreById($_SESSION['user_id'], $pdo);
+            $_SESSION['user_score'] = $userScore;
+          }
+          echo 'ハイスコア：<labal id="userScore">' . $_SESSION['user_score'] . '</labal>';
           ?>
         </div>
       </div>
