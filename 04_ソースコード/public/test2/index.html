@@ -141,7 +141,6 @@ if (!isset($_SESSION['user_id'])) {
           $_SESSION['user_score'] = 0; // 今回の得点
           ?>
           <p id="highscore">ハイスコア：<?= $highscore ?></p>
-          <!-- <p id="highscore">ハイスコア：<?= 0 ?></p> -->
           <p id="user_score">スコア：<?= $_SESSION['user_score'] ?></p>
         </div>
         <canvas id="main-canvas"></canvas>
