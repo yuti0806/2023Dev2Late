@@ -1,32 +1,76 @@
+<?php // これは、有効期限が1日の永続クッキーを送信します
+session_start(['cookie_lifetime' => 86400,]);
+// session_start();
+echo "session id = " . session_id() . "<br>";
+?>
+<?php
+// PDOを使ってデータベースに接続する
+require_once(__DIR__ . '/DBmng.php');
+$db = new DBmng();
+$pdo = $db->dbConnect();
+?>
+<?php
+/* セッション上に問題カウントがあるかどうかをチェックする 
+echo isset($_SESSION['q_cnt_idx']) ? 'true' : 'false';
+echo isset($_SESSION['ids']) ? 'true' : 'false';
+echo "<br>";
+echo $_SESSION['q_cnt_idx'];
+echo "<br>";
+*/
+
+/* セッション上の問題カウントがない、
+  または10を超えたら、セッションを破棄し、カウントインデックスを0にリセットする*/
+if (!isset($_SESSION['q_cnt_idx']) || $_SESSION['q_cnt_idx'] >= 10) {
+  // ランダムな問題のID配列を取得し直して、セッションに格納する
+  $ids = $db->getRandomIds($pdo, 10);
+  $_SESSION['ids'] = $ids;
+  $_SESSION['q_cnt_idx'] = 0;
+
+  echo "session start";
+} else {
+  // ランダム問題配列をセッションから取得する
+  $ids = $_SESSION['ids'];
+  echo "session continue";
+}
+
+/*
+echo "<br>";
+echo "session id = " . session_id();
+echo "<br>";
+*/
+
+?>
+<?php
+//インデックスを取得したあと、プラス１ 
+$idx = $_SESSION['q_cnt_idx'];
+$_SESSION['q_cnt_idx']++
+?>
+
 <!DOCTYPE html>
 <html>
 
 <head>
   <meta charset="utf-8" />
-  <title></title>
-  <!-- quiz.jsを読み込む -->
-  <script src="quiz.js"></script>
+  <title>テスト10問</title>
 </head>
 
 <body>
-  <?php
-  require_once(__DIR__ . '/DBmng.php');
-  $db = new DBmng();
-  $pdo = $db->dbConnect();
-  $ids = $db->getRandomIds($pdo, 10);
-
-  ?>
   <p>問題文</p>
-  <?php $questions = $db->getQuestionsByIds($pdo, $ids);  ?>
-  <?php foreach ($questions as $question) : ?>
-    <?php echo $question['id']; ?><br>
-    <?php echo $question['question']; ?></br>
-    <?php echo $question['answers1']; ?></br>
-    <?php echo $question['answers2']; ?></br>
-    <?php echo $question['answers3']; ?></br>
-    <?php echo "正解：" . $question['answer']; ?></br>
-    <hr>
-  <?php endforeach; ?>
+  <!-- <?php $id = $ids[$idx]; ?>
+  <?= '$id = ' . $id; ?>
+  <?= '$ids = ' . $ids; ?>
+  <?= '$idx = ' . $idx; ?>
+  <?= '$ids[0] = ' . $ids[0]; ?> -->
+  <?php $question = $db->getQuestionsById($pdo, $id);  ?>
+
+  <br>
+  <?php echo "Q：" . $question['id']; ?><br>
+  <?php echo $question['question']; ?></br>
+  <?php echo $question['answers1']; ?></br>
+  <?php echo $question['answers2']; ?></br>
+  <?php echo $question['answers3']; ?></br>
+  <?php echo "正解：" . $question['answer'] + 1; ?></br>
+  <hr>
 </body>
 
 </html>
