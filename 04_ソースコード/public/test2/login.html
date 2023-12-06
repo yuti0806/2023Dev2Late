@@ -38,7 +38,9 @@ session_start();
         <h2>Login</h2>
         <?php if (isset($_SESSION['loginError'])) { ?>
             <p class="alert alert-danger"><?php echo $_SESSION['loginError']; ?></p>
-        <?php }  ?>
+        <?php
+            unset($_SESSION['loginError']);
+        }  ?>
         <form action="../backend/Login.php" method="post">
             <input name="user_id" type="text" class="form-control" placeholder="User ID" required><br>
             <input name="user_password" type="password" class="form-control" placeholder="Password" required><br>
