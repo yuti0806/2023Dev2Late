@@ -371,6 +371,23 @@ let endY = 0
 window.addEventListener('touchstart', (e) =>  {
   startX = e.touches[0].pageX
   startY = e.touches[0].pageY
+  if( !tapCount ) {
+    ++tapCount ;
+
+    setTimeout( function() {
+        tapCount = 0 ;
+    }, 350 ) ;
+
+// ダブルタップ判定
+} else {
+    e.preventDefault() ;
+    tapCount = 0 ;
+}
+this.blocks.forEach(block=>{
+    let oldX = block.x
+    block.x = block.y
+    block.y = 3-oldX
+})
 })
 
 // 解説②：移動した座標を取得

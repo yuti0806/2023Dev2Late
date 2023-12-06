@@ -144,6 +144,17 @@ if (!isset($_SESSION['user_id'])) {
           <div><button id="logout-btn" type="button" class="btn btn-danger btn-sm" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">ログアウト</button></div>
           <div><button id="start-btn" type=" button" class="btn btn-primary btn-sm" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">スタート</button></div>
         </div>
+        <div>
+          <?php
+            if(!isset($_SESSION['user_score'])){
+              require_once './backend/DBmng.php';
+              $cls = new DBmng();
+              $userScore = $cls->getUserScoreById($_SESSION['user_id'], $pdo);
+              $_SESSION['user_score'] = $userScore;
+            }
+            echo 'ハイスコア：<labal id="userScore">'.$_SESSION['user_score'].'</labal>';
+          ?>
+        </div>
       </div>
       <!-- <div class="col-8">
             <canvas id="main-canvas" class="float-end"></canvas>
