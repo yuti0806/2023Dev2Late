@@ -129,11 +129,11 @@ if (!isset($_SESSION['user_id'])) {
 
 <body>
   <div id="container" class="container-fruid">
-    <div>
-      <p><?= "ようこそ {$_SESSION["user_id"]} さん" ?></p>
-    </div>
     <div class="row row-cols-auto">
       <div class="col-8">
+        <div>
+          <p><?= "ようこそ {$_SESSION["user_id"]} さん" ?></p>
+        </div>
         <canvas id="main-canvas"></canvas>
       </div>
       <div class="col-4">
