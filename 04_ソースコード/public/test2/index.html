@@ -135,13 +135,13 @@ if (!isset($_SESSION['user_id'])) {
           <p><?= "ようこそ {$_SESSION["user_id"]} さん！！" ?></p>
           <?php
           $highscore = 0;
-          if (!isset($_SESSION['user_score'])) {
-            require_once './backend/DBmng.php';
-            // $cls = new DBmng();
-            // $userScore = $cls->getUserScoreById($_SESSION['user_id'], $pdo);
-            // $highscore = $userScore;
-            $_SESSION['user_score'] = 0; // 今回の得点
-          }
+          // if (!isset($_SESSION['user_score'])) {
+          //   require_once './backend/DBmng.php';
+          // $cls = new DBmng();
+          // $userScore = $cls->getUserScoreById($_SESSION['user_id'], $pdo);
+          // $highscore = $userScore;
+          //   $_SESSION['user_score'] = 0; // 今回の得点
+          // }
           ?>
           <p id="highscore">ハイスコア：<?= $highscore ?></p>
           <p id="user_score">スコア：<?= $_SESSION['user_score'] ?></p>
