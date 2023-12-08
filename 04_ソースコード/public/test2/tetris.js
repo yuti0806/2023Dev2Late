@@ -108,7 +108,7 @@ class Game{
             clearInterval(this.timer)
             alert("ゲームオーバー")
             let highScore = document.getElementById("highscore").substring(7);
-            let userScore = document.getElementById("user_score").substring("5");
+            let userScore = document.getElementById("user_score").substring(5);
             if(highScore > userScore){
                 import {updatePoint} from 'event';
                 const user_id = document.getElementById("userid");
