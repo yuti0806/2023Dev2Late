@@ -1,15 +1,3 @@
-var newScore = 0;
-function sendScore(newScore){
-    const jsonStr = JSON.stringify(newScore);
-    const body = new FormData();
-    body.append('json', jsonStr);
-    const url = 'JsonDecode.php';
-    fetch(url, {
-        method: 'post',
-        body
-      }).then(res => res.text()).then(console.log);
-}
-
 const SATRT_BTN_ID = "start-btn"
 const MAIN_CANVAS_ID = "main-canvas"
 const NEXT_CANVAS_ID = "next-canvas"
@@ -119,7 +107,7 @@ class Game{
             this.drawAll()
             clearInterval(this.timer)
             alert("ゲームオーバー")
-            let highScore = document.getElementById("highscore")
+            let highScore = document.getElementById("highscore");
             let userScore = document.getElementById("user_score");
             if(highScore > userScore){
                 import {updatePoint} from 'event';
