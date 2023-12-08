@@ -138,6 +138,7 @@ if (!isset($_SESSION['user_id'])) {
           $cls = new DBmng();
           $highscore = $cls->getUserScoreById($_SESSION['user_id'], $pdo);
           $_SESSION['user_score'] = 0; // 今回の得点初期値
+          echo '<p id="userid" type="hidden">'.$_SESSION['user_id'].'</p>';
           ?>
           <p id="highscore">ハイスコア：<?= $highscore ?></p>
           <p id="user_score">スコア：<?= $_SESSION['user_score'] ?></p>
