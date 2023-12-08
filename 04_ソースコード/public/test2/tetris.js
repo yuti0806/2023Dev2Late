@@ -119,8 +119,9 @@ class Game{
             this.drawAll()
             clearInterval(this.timer)
             alert("ゲームオーバー")
-            let userScore = document.getElementById("userScore");
-            if(newScore > userScore){
+            let highScore = document.getElementById("highscore")
+            let userScore = document.getElementById("user_score");
+            if(highScore > userScore){
                 import {updatePoint} from 'event';
                 const user_id = <?php json_encode($_SESSION['user_id']);?>;
                 updatePoint(user_id);
