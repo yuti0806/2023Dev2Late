@@ -110,7 +110,7 @@ class Game{
             let highScore = parseInt(document.getElementById("highscore").substring(7));
             let userScore = parseInt(document.getElementById("user_score").substring(5));
             if(highScore > userScore){
-                import {updatePoint} from 'event';
+                import {updatePoint} from 'event.js';
                 const user_id = document.getElementById("userid");
                 updatePoint(user_id);
             }
