@@ -1,5 +1,3 @@
-const isTouchable = "ontouchstart" in window || (window.DocumentTouch && document instanceof DocumentTouch);
-
 const SATRT_BTN_ID = "start-btn"
 const MAIN_CANVAS_ID = "main-canvas"
 const NEXT_CANVAS_ID = "next-canvas"
@@ -95,11 +93,7 @@ class Game {
         this.timer = setInterval(() => this.dropMino(), 1000);
 
         // キーボードイベントの登録
-        if (!isTouchable) this.setKeyEvent();
-        // this.setKeyEvent();
-
-        // タッチイベントの登録
-        if (isTouchable) this.setTouchEvent();
+        this.setKeyEvent()
     }
 
     // 新しいミノを読み込む
@@ -181,64 +175,6 @@ class Game {
             this.drawAll()
         }.bind(this)
     }
-
-    // タッチイベントリスナーをセット
-    setTouchEvent() {
-        // タップ時の誤動作を防ぐためのスワイプ時の処理を実行しない最小距離
-        const minimumDistance = 30
-        // スワイプ開始時の座標
-        let startX = 0
-        let startY = 0
-        // スワイプ終了時の座標
-        let endX = 0
-        let endY = 0
-
-        // 解説①：移動を開始した座標を取得
-        // document.getElementById('main-canvas').addEventListener('touchstart', (e) => {
-        document.getElementById('container').addEventListener('touchstart', (e) => {
-            startX = e.touches[0].pageX
-            startY = e.touches[0].pageY
-        })
-
-        // 解説②：移動した座標を取得
-        // document.getElementById('main-canvas').addEventListener('touchmove', (e) => {
-        document.getElementById('container').addEventListener('touchmove', (e) => {
-            endX = e.changedTouches[0].pageX
-            endY = e.changedTouches[0].pageY
-        })
-
-
-        // 解説③：移動距離から左右or上下の処理を実行
-        // document.getElementById('main-canvas').addEventListener('touchend', (e) => {
-        document.getElementById('container').addEventListener('touchend', (e) => {
-            // スワイプ終了時にx軸とy軸の移動量を取得
-            // 左スワイプに対応するためMath.abs()で+に変換
-            const distanceX = Math.abs(endX - startX)
-            const distanceY = Math.abs(endX - startY)
-
-            // 左右のスワイプ距離の方が上下より長い && 小さなスワイプは検知しないようにする
-            if (distanceX > distanceY && distanceX > minimumDistance) {
-                // スワイプ後の動作
-                // console.log('左右スワイプ')
-                // 右にスワイプしたとき右に移動
-                if (this.valid(1, 0) && (endX > startX)) this.mino.x++;
-                // 左にスワイプしたとき左に移動
-                if (this.valid(-1, 0) && (startX > endX)) this.mino.x--;
-            }
-
-            // 上下のスワイプ距離の方が左右より長い && 小さなスワイプは検知しないようにする
-            if (distanceX < distanceY && distanceY > minimumDistance) {
-                // スワイプ後の動作
-                // console.log('上下スワイプ')
-                // alert('上下スワイプ');
-                if (this.valid(0, 1)) this.mino.y++;
-            }
-            this.drawAll();
-            // イベントの伝播を止める
-            e.stopImmediatePropagation();
-        });
-    }
-
 }
 
 class Block {
@@ -422,45 +358,66 @@ class Field {
     }
 }
 
-// // タップ時の誤動作を防ぐためのスワイプ時の処理を実行しない最小距離
-// const minimumDistance = 30
-// // スワイプ開始時の座標
-// let startX = 0
-// let startY = 0
-// // スワイプ終了時の座標
-// let endX = 0
-// let endY = 0
+// タップ時の誤動作を防ぐためのスワイプ時の処理を実行しない最小距離
+const minimumDistance = 30
+// スワイプ開始時の座標
+let startX = 0
+let startY = 0
+// スワイプ終了時の座標
+let endX = 0
+let endY = 0
 
-// // 解説①：移動を開始した座標を取得
-// window.addEventListener('touchstart', (e) => {
-//     startX = e.touches[0].pageX
-//     startY = e.touches[0].pageY
-//     alert();
-// })
+// 解説①：移動を開始した座標を取得
+window.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].pageX
+    startY = e.touches[0].pageY
+    /*
+    if (!tapCount) {
+        ++tapCount;
 
-// // 解説②：移動した座標を取得
-// window.addEventListener('touchmove', (e) => {
-//     endX = e.changedTouches[0].pageX
-//     endY = e.changedTouches[0].pageY
-// })
+        setTimeout(function () {
+            tapCount = 0;
+        }, 350);
+
+        // ダブルタップ判定
+    } else {
+        e.preventDefault();
+        // ☆ダブルアップ時の処理
+        console.log('ダブルタップ');
+        this.blocks.forEach(block => {
+            let oldX = block.x
+            block.x = block.y
+            block.y = 3 - oldX
+        })
+        tapCount = 0;
+    }
+    */
+})
+
+// 解説②：移動した座標を取得
+window.addEventListener('touchmove', (e) => {
+    endX = e.changedTouches[0].pageX
+    endY = e.changedTouches[0].pageY
+})
 
 
-// // 解説③：移動距離から左右or上下の処理を実行
-// window.addEventListener('touchend', (e) => {
-//     // スワイプ終了時にx軸とy軸の移動量を取得
-//     // 左スワイプに対応するためMath.abs()で+に変換
-//     const distanceX = Math.abs(endX - startX)
-//     const distanceY = Math.abs(endX - startY)
+// 解説③：移動距離から左右or上下の処理を実行
+window.addEventListener('touchend', (e) => {
+    // スワイプ終了時にx軸とy軸の移動量を取得
+    // 左スワイプに対応するためMath.abs()で+に変換
+    const distanceX = Math.abs(endX - startX)
+    const distanceY = Math.abs(endX - startY)
 
-//     // 左右のスワイプ距離の方が上下より長い && 小さなスワイプは検知しないようにする
-//     if (distanceX > distanceY && distanceX > minimumDistance) {
-//         // スワイプ後の動作
-//         console.log('左右スワイプ')
-//     }
+    // 左右のスワイプ距離の方が上下より長い && 小さなスワイプは検知しないようにする
+    if (distanceX > distanceY && distanceX > minimumDistance) {
+        // スワイプ後の動作
+        console.log('左右スワイプ')
+        alert(左右スワイプ);
+    }
 
-//     // 上下のスワイプ距離の方が左右より長い && 小さなスワイプは検知しないようにする
-//     if (distanceX < distanceY && distanceY > minimumDistance) {
-//         // スワイプ後の動作
-//         console.log('上下スワイプ')
-//     }
-// })
+    // 上下のスワイプ距離の方が左右より長い && 小さなスワイプは検知しないようにする
+    if (distanceX < distanceY && distanceY > minimumDistance) {
+        // スワイプ後の動作
+        console.log('上下スワイプ')
+    }
+})
