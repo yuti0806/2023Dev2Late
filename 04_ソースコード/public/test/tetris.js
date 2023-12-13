@@ -215,6 +215,7 @@ class Game {
                 console.log('ダブルタップ');
                 this.mino.rotate();
                 this.drawAll();
+                alert("ダブルタップ");
                 // this.blocks.forEach(block => {
                 //     let oldX = block.x
                 //     block.x = block.y
