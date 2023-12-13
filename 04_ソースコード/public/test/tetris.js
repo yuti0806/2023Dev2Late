@@ -192,12 +192,35 @@ class Game {
         // スワイプ終了時の座標
         let endX = 0
         let endY = 0
+        // タップのカウント数
+        let tapCount = 0;
 
         // 解説①：移動を開始した座標を取得
         // document.getElementById('main-canvas').addEventListener('touchstart', (e) => {
         document.getElementById('container').addEventListener('touchstart', (e) => {
             startX = e.touches[0].pageX
             startY = e.touches[0].pageY
+
+            if (!tapCount) {
+                ++tapCount;
+
+                setTimeout(function () {
+                    tapCount = 0;
+                }, 350);
+
+                // ダブルタップ判定
+            } else {
+                e.preventDefault();
+                // ☆ダブルアップ時の処理
+                console.log('ダブルタップ');
+                this.blocks.forEach(block => {
+                    let oldX = block.x
+                    block.x = block.y
+                    block.y = 3 - oldX
+                })
+                tapCount = 0;
+            }
+
         })
 
         // 解説②：移動した座標を取得

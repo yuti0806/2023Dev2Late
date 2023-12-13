@@ -366,6 +366,8 @@ let startY = 0
 // スワイプ終了時の座標
 let endX = 0
 let endY = 0
+// タップのカウント数
+let tapCount = 0;
 
 // 解説①：移動を開始した座標を取得
 window.addEventListener('touchstart', (e) => {
