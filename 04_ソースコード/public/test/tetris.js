@@ -383,6 +383,7 @@ window.addEventListener('touchstart', (e) =>  {
     e.preventDefault() ;
     tapCount = 0 ;
 }
+// 回転の動作を付け加えてみた
 this.blocks.forEach(block=>{
     let oldX = block.x
     block.x = block.y
