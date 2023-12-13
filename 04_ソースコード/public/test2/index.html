@@ -131,6 +131,18 @@ if (!isset($_SESSION['user_id'])) {
   <div id="container" class="container-fruid">
     <div class="row row-cols-auto">
       <div class="col-8">
+        <div>
+          <p><?= "ようこそ {$_SESSION["user_id"]} さん！！" ?></p>
+          <?php
+          require_once '../backend/DBmng.php';
+          $cls = new DBmng();
+          $highscore = $cls->getUserScoreById($_SESSION['user_id'], $pdo);
+          $_SESSION['user_score'] = 0; // 今回の得点初期値
+          echo '<p id="userid" type="hidden">'.$_SESSION['user_id'].'</p>';
+          ?>
+          <p id="highscore">ハイスコア：<?= $highscore ?></p>
+          <p id="user_score">スコア：<?= $_SESSION['user_score'] ?></p>
+        </div>
         <canvas id="main-canvas"></canvas>
       </div>
       <div class="col-4">
@@ -143,17 +155,6 @@ if (!isset($_SESSION['user_id'])) {
         <div class="row-4">
           <div><button id="logout-btn" type="button" class="btn btn-danger btn-sm" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">ログアウト</button></div>
           <div><button id="start-btn" type=" button" class="btn btn-primary btn-sm" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">スタート</button></div>
-        </div>
-        <div>
-          <?php
-            if(!isset($_SESSION['user_score'])){
-              require_once './backend/DBmng.php';
-              $cls = new DBmng();
-              $userScore = $cls->getUserScoreById($_SESSION['user_id'], $pdo);
-              $_SESSION['user_score'] = $userScore;
-            }
-            echo 'ハイスコア：<labal id="userScore">'.$_SESSION['user_score'].'</labal>';
-          ?>
         </div>
       </div>
       <!-- <div class="col-8">
