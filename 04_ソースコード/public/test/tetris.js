@@ -213,6 +213,7 @@ class Game {
                 e.preventDefault();
                 // ☆ダブルアップ時の処理
                 console.log('ダブルタップ');
+                alert("ダブルタップ");
                 this.blocks.forEach(block => {
                     let oldX = block.x
                     block.x = block.y
