@@ -1,3 +1,10 @@
+<?php
+    session_start();
+    $_SESSION = array();
+    session_destroy();
+    // pdo情報を保持したい場合は下記を使用
+    // unset($_SESSION['user_id']);
+?>
 
 <DOCTYPE html>
     <html lang="en">

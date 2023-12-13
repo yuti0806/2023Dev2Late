@@ -22,6 +22,14 @@
   <div id="container" class="container">
     <div class="row">
       <div class="col-8">
+        <p><?= "ようこそ {$_SESSION["user_id"]} さん！！" ?></p>
+          <?php
+          require_once '../backend/DBmng.php';
+          $cls = new DBmng();
+          $highscore = $cls->getUserScoreById($_SESSION['user_id'], $pdo);
+          $_SESSION['user_score'] = 0; // 今回の得点初期値
+          echo '<p id="userid" type="hidden">'.$_SESSION['user_id'].'</p>';
+          ?>
         <canvas id="main-canvas" class="float-end"></canvas>
       </div>
       <div class="col-4">
