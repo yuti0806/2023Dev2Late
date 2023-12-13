@@ -213,12 +213,14 @@ class Game {
                 e.preventDefault();
                 // ☆ダブルアップ時の処理
                 console.log('ダブルタップ');
-                this.blocks.forEach(block => {
-                    let oldX = block.x
-                    block.x = block.y
-                    block.y = 3 - oldX
-                    alert("ダブルタップ");
-                })
+                this.mino.rotate();
+                this.drawAll();
+                // this.blocks.forEach(block => {
+                //     let oldX = block.x
+                //     block.x = block.y
+                //     block.y = 3 - oldX
+                //     alert("ダブルタップ");
+                // })
                 tapCount = 0;
             }
 
