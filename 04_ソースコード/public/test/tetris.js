@@ -459,36 +459,11 @@ class Field {
 //     alert();
 // })
 
-<<<<<<< HEAD
-    setTimeout( function() {
-        tapCount = 0 ;
-    }, 350 ) ;
-
-// ダブルタップ判定
-} else {
-    e.preventDefault() ;
-    tapCount = 0 ;
-}
-// 回転の動作を付け加えてみた
-this.blocks.forEach(block=>{
-    let oldX = block.x
-    block.x = block.y
-    block.y = 3-oldX
-})
-})
-
-// 解説②：移動した座標を取得
-window.addEventListener('touchmove', (e) =>  {
-  endX = e.changedTouches[0].pageX
-  endY = e.changedTouches[0].pageY
-})
-=======
 // // 解説②：移動した座標を取得
 // window.addEventListener('touchmove', (e) => {
 //     endX = e.changedTouches[0].pageX
 //     endY = e.changedTouches[0].pageY
 // })
->>>>>>> 44102a3fb9202d47b6029a787e2be444c2694979
 
 
 // // 解説③：移動距離から左右or上下の処理を実行
