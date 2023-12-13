@@ -371,6 +371,7 @@ let endY = 0
 window.addEventListener('touchstart', (e) => {
     startX = e.touches[0].pageX
     startY = e.touches[0].pageY
+    /*
     if (!tapCount) {
         ++tapCount;
 
@@ -390,6 +391,7 @@ window.addEventListener('touchstart', (e) => {
         })
         tapCount = 0;
     }
+    */
 })
 
 // 解説②：移動した座標を取得
