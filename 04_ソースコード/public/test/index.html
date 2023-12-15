@@ -30,13 +30,13 @@ if (!isset($_SESSION['user_id'])) {
   <div id="container" class="container">
     <div class="row">
       <div class="col-8">
-        <p><?= "ようこそ {$_SESSION["user_id"]} さん！！" ?></p>
+        <p>ようこそ<div id="user_id"><?= $_SESSION["user_id"] ?>さん！</div></p>
           <?php
           require_once '../backend/DBmng.php';
           $cls = new DBmng();
           $highscore = $cls->getUserScoreById($_SESSION['user_id'], $pdo);
           $_SESSION['user_score'] = 0; // 今回の得点初期値
-          echo '<p id="userid" type="hidden">'.$_SESSION['user_id'].'</p>';
+          <!-- echo '<p id="userid" type="hidden">'.$_SESSION['user_id'].'</p>'; -->
           ?>
           ハイスコア<div id="highscore"><?=$highscore?></div>
           現在のスコア<div id="user_score"><?=$_SEESION['user_score']?></div>

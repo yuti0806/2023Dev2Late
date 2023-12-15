@@ -434,7 +434,21 @@ class Field {
             if (c === COLS_COUNT) {
                 this.blocks = this.blocks.filter(block => block.y !== r)
                 this.blocks.filter(block => block.y < r).forEach(upper => upper.y++)
-                alert("123");
+                alert("123");//完成前に消す
+                // 例：id="point" のテキストを変更する
+                let l_scoreDom = document.getElementById("user_score");
+                // 現在のスコアを取得
+                let l_newScore = scoreDom.value;
+                l_newScore += 100;
+                // 現在のスコアの表示を更新
+                l_scoreDom.innerHTML = l_newScore;
+                if(l_newScore>l_highscore){
+                    // ハイスコアの更新DB呼び出し
+                    let user_id = document.getElementById("user_id");
+                    updatePoint(user_id);
+                    // ハイスコア表示は非同期で更新される
+
+                }
             }
         }
     }
@@ -490,11 +504,11 @@ class Field {
 function updatePoint(user_id) {
     // ここに処理を追加してください
     // 例：id="point" のテキストを変更する
-    let scoreDom = document.getElementById("highScore");
+    let scoreDom = document.getElementById("user_score");
     // 現在のスコアを取得
     let newScore = scoreDom.value;
-    // 更新後のスコア表示覧
-    let updatedScoreDom = document.getElementById("user_Score");
+    // ハイスコア表示覧(DB更新後に値を変える)
+    let highscoreDom = document.getElementById("highscore");
 
     // FormDataオブジェクトを作成
     var formData = new FormData();
@@ -519,7 +533,8 @@ function updatePoint(user_id) {
                 console.log(response2);
                 // JSON形式の文字列が戻り値なので、オブジェクトに変換
                 let obj = JSON.parse(response2);
-                updatedScoreDom.innerHTML = obj.nowScore;
+                // ハイスコア表示を更新
+                highscoreDom.innerHTML = obj.nowScore;
             });
         }).catch(error => {
             console.log(error);

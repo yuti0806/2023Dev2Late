@@ -5,11 +5,11 @@
 export function updatePoint(user_id) {
     // ここに処理を追加してください
     // 例：id="point" のテキストを変更する
-    let scoreDom = document.getElementById("userScore");
+    let scoreDom = document.getElementById("user_score");
     // 現在のスコアを取得
     let newScore = scoreDom.value;
-    // 更新後のスコア表示覧
-    let updatedScoreDom = document.getElementById("updatedScore");
+    // ハイスコア表示覧
+    let highscoreDom = document.getElementById("highscore");
 
     // FormDataオブジェクトを作成
     var formData = new FormData();
@@ -34,7 +34,10 @@ export function updatePoint(user_id) {
                 console.log(response2);
                 // JSON形式の文字列が戻り値なので、オブジェクトに変換
                 let obj = JSON.parse(response2);
-                updatedScoreDom.innerHTML = obj.nowScore;
+                // 現在のスコア表示を更新
+                scoreDom.innerHTML = obj.nowScore;
+                // ハイスコア表示を更新
+                highscoreDom.innerHTML = obj.nowScore;
             });
         }).catch(error => {
             console.log(error);
