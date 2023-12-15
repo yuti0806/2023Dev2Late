@@ -434,7 +434,7 @@ class Field {
             if (c === COLS_COUNT) {
                 this.blocks = this.blocks.filter(block => block.y !== r)
                 this.blocks.filter(block => block.y < r).forEach(upper => upper.y++)
-                alert("123");//完成前に消す
+                
                 // 例：id="point" のテキストを変更する
                 let l_scoreDom = document.getElementById("user_score");
                 // 現在のスコアを取得
