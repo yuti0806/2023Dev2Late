@@ -439,9 +439,9 @@ class Field {
                 let l_scoreDom = document.getElementById("user_score");
                 // 現在のスコアを取得
                 let l_newScore = l_scoreDom.innerHTML;
-                alert(l_newScore);
+               
                 l_newScore = parseInt(l_newScore) + 100;
-                alert(l_newScore);
+        
                 // 現在のスコアの表示を更新
                 l_scoreDom.innerHTML = l_newScore;
                 if(l_newScore>l_highscore){
