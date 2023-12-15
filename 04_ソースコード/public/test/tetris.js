@@ -30,7 +30,8 @@ window.onload = function () {
     }
     document.getElementById(LOGOUT_BTN_ID).onclick = function () {
         this.blur() // ボタンのフォーカスを外す
-        window.location.href = "logout.html";
+        // 処理を引き渡す（画面遷移）
+        window.location.href = "../backend/logout.php";
     }
 }
 
