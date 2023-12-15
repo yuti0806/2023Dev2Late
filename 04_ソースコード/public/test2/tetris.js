@@ -1,15 +1,3 @@
-var newScore = 0;
-function sendScore(newScore){
-    const jsonStr = JSON.stringify(newScore);
-    const body = new FormData();
-    body.append('json', jsonStr);
-    const url = 'JsonDecode.php';
-    fetch(url, {
-        method: 'post',
-        body
-      }).then(res => res.text()).then(console.log);
-}
-
 const SATRT_BTN_ID = "start-btn"
 const MAIN_CANVAS_ID = "main-canvas"
 const NEXT_CANVAS_ID = "next-canvas"
@@ -28,7 +16,9 @@ const BLOCK_SOURCES = [
         "images/block-4.png",
         "images/block-5.png",
         "images/block-6.png"
-    ]
+]
+const user_id = document.getElementById("userid");
+const highScore = document.getElementById("highscore");
 
 window.onload = function(){
   Asset.init()
@@ -119,12 +109,6 @@ class Game{
             this.drawAll()
             clearInterval(this.timer)
             alert("ゲームオーバー")
-            let userScore = document.getElementById("userScore");
-            if(newScore > userScore){
-                import {updatePoint} from 'event';
-                const user_id = <?php json_encode($_SESSION['user_id']);?>;
-                updatePoint(user_id);
-            }
         }
     }
 
@@ -367,6 +351,10 @@ class Field{
         if(c === COLS_COUNT){
           this.blocks = this.blocks.filter(block => block.y !== r)
           this.blocks.filter(block => block.y < r).forEach(upper => upper.y++)
+          let userScore = document.getElementById("user_score");
+          if(userScore > highScore){
+              updatePoint(user_id);
+          }
         }
       }
     }
@@ -374,4 +362,44 @@ class Field{
     has(x, y){
         return this.blocks.some(block => block.x == x && block.y == y)
     }
+}
+
+function updatePoint(user_id) {
+    let scoreDom = document.getElementById("highScore");
+    // 現在のスコアを取得
+    let newScore = scoreDom.value;
+    // 更新後のスコア表示覧
+    let updatedScoreDom = document.getElementById("user_Score");
+
+    // FormDataオブジェクトを作成
+    var formData = new FormData();
+
+    // データを追加
+    formData.append("user_id", user_id);
+    formData.append("newscore", newScore);
+    // formData.append("key2", "value2");
+
+    // Fetch APIを使用してPOSTリクエストを送信
+    fetch('https://team4.nikita.jp/backend/updatePoint.php', {
+        method: 'POST',  // メソッドを指定
+        body: formData  // ボディにFormDataを設定
+    })
+        // レスポンスを画面にセット
+        .then(response => {
+            //PromiseResult:Response
+            let text = response.text();
+            // console.log(text);
+            text.then(response2 => {
+                //PromiseResult:戻り値
+                console.log(response2);
+                // JSON形式の文字列が戻り値なので、オブジェクトに変換
+                let obj = JSON.parse(response2);
+                updatedScoreDom.innerHTML = obj.nowScore;
+            });
+        }).catch(error => {
+            console.log(error);
+        });
+
+
+    // alert(newScore);
 }

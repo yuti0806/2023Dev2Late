@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_id'])) {
+  header("Location:login.html");
+  exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,6 +30,16 @@
   <div id="container" class="container">
     <div class="row">
       <div class="col-8">
+        <p>ようこそ<div id="user_id"><?= $_SESSION["user_id"] ?>さん！</div></p>
+          <?php
+          require_once '../backend/DBmng.php';
+          $cls = new DBmng();
+          $highscore = $cls->getUserScoreById($_SESSION['user_id'], $pdo);
+          $_SESSION['user_score'] = 0; // 今回の得点初期値
+          $user_score = $_SESSION['user_score'];
+          ?>
+          ハイスコア<div id="highscore"><?=$highscore?></div>
+          現在のスコア<div id="user_score"><?=$user_score?></div>
         <canvas id="main-canvas" class="float-end"></canvas>
       </div>
       <div class="col-4">

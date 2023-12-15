@@ -1,10 +1,3 @@
-<?php
-    session_start();
-    $_SESSION = array();
-    session_destroy();
-    // pdo情報を保持したい場合は下記を使用
-    // unset($_SESSION['user_id']);
-?>
 
 <DOCTYPE html>
     <html lang="en">
@@ -34,7 +27,6 @@
     
     
         <style type="text/css">
-          
           body{
     font-family: ãƒ¡ã‚¤ãƒªã‚ª;
 	font-size: 13px;
@@ -66,16 +58,16 @@
     font-size: .9em;
 }
 
-.message-text{
-    text-align:center;/*真ん中に配置*/
-    color: #9E8FFD;/*文字色*/
-    font-size:20px;
-
-    position: absolute;/*ボタンの位置に関する処理*/
-    bottom: 300px;/*ボタンの下からの距離感*/
-    left: 50%;/*ボタンの位置に関する処理*/
-    line-height: 30px;/*ボタンの位置に関する処理*/
-    transform: translateX( -50%);/*ボタンの位置に関する処理*/
+.form-control{
+    width: 400px;
+    padding: 8px 10px;
+    border: 1px solid #969da3;
+    border-radius: 3px;
+    font-size: 1em;
+    line-height: 1.5;
+    padding-top:10px;
+    padding-bottom:10px;
+    font-size:25px;
 }
 
 .Button{
@@ -97,12 +89,43 @@
     line-height: 30px;/*ボタンの位置に関する処理*/
     transform: translateX( -50%);/*ボタンの位置に関する処理*/
 }
+
+hr {
+    width: 80%;
+    border: none;
+    border-top: 2px dotted black;
+}
+
+.err{
+    margin-left:0px;
+}
+
+.errmsg{
+    color: red;
+    text-align: center;
+    font-size: 25px;
+}
+
+.login-id{
+    color: #9E8FFD; /*色を変えてます*/
+    position: relative;/*文字の位置を変える準備です*/
+    left: -185px;/*文字を左から160px動かしてます*/
+    font-size: 30px;/*文字のサイズを変える*/
+}
+
+.login-pass{
+    color: #9E8FFD;
+    position: relative;
+    left: -170px;/*画面サイズを変えると場所が変わる　先生に聞く*/
+    font-size: 30px;
+}
+
     
         </style>
     
         
         <!-- Custom styles for this template -->
-       <!-- <link href="./../testcss/logout.css" rel="stylesheet" type="text/css"> -->
+       <!-- <link href="./../testcss/newcreate.css" rel="stylesheet" type="text/css"> -->
       </head>
       <body class="text-center">
         
@@ -111,12 +134,19 @@
         <div id="imgdiv">
           <img class="mb-4" src="./../img/logotetorisu.png" alt="" width="72" height="57">
         </div>
-          <h1 class="login">ログアウト</h1>
-        <div class="message-text">
-            またね！
-        </div>
+          <h1 class="login">新規登録</h1>
+    
+        <div class="mid">
           <div class="form-floating">
-          <button class="Button" type="submit">ログイン</button>
+            <div class="login-id">ID</div>
+            <input type="text" class="form-control" id="floatingInput" placeholder="登録するIDを入力"name="userid">
+          </div>
+          <div class="form-floating">
+          <div class="login-pass">Pass</div>
+            <input type="password" class="form-control" id="floatingPassword" placeholder="登録するパスワードを入力"name="password">
+          </div>
+          <div class="form-floating">
+          <button class="Button" type="submit">新規登録</button>
           </div>
           
       </form>

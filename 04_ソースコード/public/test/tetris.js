@@ -1,3 +1,5 @@
+const isTouchable = "ontouchstart" in window || (window.DocumentTouch && document instanceof DocumentTouch);
+
 const SATRT_BTN_ID = "start-btn"
 const MAIN_CANVAS_ID = "main-canvas"
 const NEXT_CANVAS_ID = "next-canvas"
@@ -9,43 +11,43 @@ const SCREEN_WIDTH = COLS_COUNT * BLOCK_SIZE;
 const SCREEN_HEIGHT = ROWS_COUNT * BLOCK_SIZE;
 const NEXT_AREA_SIZE = 160;
 const BLOCK_SOURCES = [
-        "images/block-0.png",
-        "images/block-1.png",
-        "images/block-2.png",
-        "images/block-3.png",
-        "images/block-4.png",
-        "images/block-5.png",
-        "images/block-6.png"
-    ]
+    "images/block-0.png",
+    "images/block-1.png",
+    "images/block-2.png",
+    "images/block-3.png",
+    "images/block-4.png",
+    "images/block-5.png",
+    "images/block-6.png"
+]
 
-window.onload = function(){
-  Asset.init()
-  let game = new Game()
-  document.getElementById(SATRT_BTN_ID).onclick = function(){
-      game.start()
-      this.blur() // ボタンのフォーカスを外す
-  }
+window.onload = function () {
+    Asset.init()
+    let game = new Game()
+    document.getElementById(SATRT_BTN_ID).onclick = function () {
+        game.start()
+        this.blur() // ボタンのフォーカスを外す
+    }
 }
 
 // 素材を管理するクラス
 // ゲーム開始前に初期化する
-class Asset{
+class Asset {
     // ブロック用Imageの配列
     static blockImages = []
 
     // 初期化処理
     // callback には、init完了後に行う処理を渡す
-    static init(callback){
+    static init(callback) {
         let loadCnt = 0
-        for(let i = 0; i <= 6; i++){
+        for (let i = 0; i <= 6; i++) {
             let img = new Image();
             img.src = BLOCK_SOURCES[i];
-            img.onload = function(){
+            img.onload = function () {
                 loadCnt++
                 Asset.blockImages.push(img)
 
                 // 全ての画像読み込みが終われば、callback実行
-                if(loadCnt >= BLOCK_SOURCES.length && callback){
+                if (loadCnt >= BLOCK_SOURCES.length && callback) {
                     callback()
                 }
             }
@@ -53,14 +55,14 @@ class Asset{
     }
 }
 
-class Game{
-    constructor(){
+class Game {
+    constructor() {
         this.initMainCanvas()
         this.initNextCanvas()
     }
 
     // メインキャンバスの初期化
-    initMainCanvas(){
+    initMainCanvas() {
         this.mainCanvas = document.getElementById(MAIN_CANVAS_ID);
         this.mainCtx = this.mainCanvas.getContext("2d");
         this.mainCanvas.width = SCREEN_WIDTH;
@@ -69,7 +71,7 @@ class Game{
     }
 
     // ネクストキャンバスの初期化
-    initNextCanvas(){
+    initNextCanvas() {
         this.nextCanvas = document.getElementById(NEXT_CANVAS_ID);
         this.nextCtx = this.nextCanvas.getContext("2d");
         this.nextCanvas.width = NEXT_AREA_SIZE
@@ -78,7 +80,7 @@ class Game{
     }
 
     // ゲームの開始処理（STARTボタンクリック時）
-    start(){
+    start() {
         // フィールドとミノの初期化
         this.field = new Field()
 
@@ -93,17 +95,21 @@ class Game{
         this.timer = setInterval(() => this.dropMino(), 1000);
 
         // キーボードイベントの登録
-        this.setKeyEvent()
+        if (!isTouchable) this.setKeyEvent();
+        // this.setKeyEvent();
+
+        // タッチイベントの登録
+        if (isTouchable) this.setTouchEvent();
     }
 
     // 新しいミノを読み込む
-    popMino(){
+    popMino() {
         this.mino = this.nextMino ?? new Mino()
         this.mino.spawn()
         this.nextMino = new Mino()
 
         // ゲームオーバー判定
-        if(!this.valid(0, 1)){
+        if (!this.valid(0, 1)) {
             this.drawAll()
             clearInterval(this.timer)
             alert("ゲームオーバー")
@@ -111,7 +117,7 @@ class Game{
     }
 
     // 画面の描画
-    drawAll(){
+    drawAll() {
         // 表示クリア
         this.mainCtx.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)
         this.nextCtx.clearRect(0, 0, NEXT_AREA_SIZE, NEXT_AREA_SIZE)
@@ -125,12 +131,12 @@ class Game{
     }
 
     // ミノの落下処理
-    dropMino(){
-        if(this.valid(0, 1)) {
+    dropMino() {
+        if (this.valid(0, 1)) {
             this.mino.y++;
-        }else{
+        } else {
             // Minoを固定する（座標変換してFieldに渡す）
-            this.mino.blocks.forEach( e => {
+            this.mino.blocks.forEach(e => {
                 e.x += this.mino.x
                 e.y += this.mino.y
             })
@@ -140,9 +146,9 @@ class Game{
         }
         this.drawAll();
     }
-    
+
     // 次の移動が可能かチェック
-    valid(moveX, moveY, rot=0){
+    valid(moveX, moveY, rot = 0) {
         let newBlocks = this.mino.getNewBlocks(moveX, moveY, rot)
         return newBlocks.every(block => {
             return (
@@ -156,58 +162,137 @@ class Game{
     }
 
     // キーボードイベント
-    setKeyEvent(){
-        document.onkeydown = function(e){
-            switch(e.keyCode){
+    setKeyEvent() {
+        document.onkeydown = function (e) {
+            switch (e.keyCode) {
                 case 37: // 左
-                    if( this.valid(-1, 0)) this.mino.x--;
+                    if (this.valid(-1, 0)) this.mino.x--;
                     break;
                 case 39: // 右
-                    if( this.valid(1, 0)) this.mino.x++;
+                    if (this.valid(1, 0)) this.mino.x++;
                     break;
                 case 40: // 下
-                    if( this.valid(0, 1) ) this.mino.y++;
+                    if (this.valid(0, 1)) this.mino.y++;
                     break;
                 case 32: // スペース
-                    if( this.valid(0, 0, 1)) this.mino.rotate();
+                    if (this.valid(0, 0, 1)) this.mino.rotate();
                     break;
             }
             this.drawAll()
         }.bind(this)
     }
+
+    // タッチイベントリスナーをセット
+    setTouchEvent() {
+        // タップ時の誤動作を防ぐためのスワイプ時の処理を実行しない最小距離
+        const minimumDistance = 30
+        // スワイプ開始時の座標
+        let startX = 0
+        let startY = 0
+        // スワイプ終了時の座標
+        let endX = 0
+        let endY = 0
+        // タップのカウント数
+        let tapCount = 0;
+
+        // 解説①：移動を開始した座標を取得
+        // document.getElementById('main-canvas').addEventListener('touchstart', (e) => {
+        document.getElementById('container').addEventListener('touchstart', (e) => {
+            startX = e.touches[0].pageX
+            startY = e.touches[0].pageY
+
+            if (!tapCount) {
+                ++tapCount;
+
+                setTimeout(function () {
+                    tapCount = 0;
+                }, 350);
+
+                // ダブルタップ判定
+            } else {
+                e.preventDefault();
+                // ☆ダブルアップ時の処理
+                // console.log('ダブルタップ');
+                this.mino.rotate();
+                this.drawAll();
+                // alert("ダブルタップ");
+                tapCount = 0;
+            }
+
+        })
+
+        // 解説②：移動した座標を取得
+        // document.getElementById('main-canvas').addEventListener('touchmove', (e) => {
+        document.getElementById('container').addEventListener('touchmove', (e) => {
+            endX = e.changedTouches[0].pageX
+            endY = e.changedTouches[0].pageY
+        })
+
+
+        // 解説③：移動距離から左右or上下の処理を実行
+        // document.getElementById('main-canvas').addEventListener('touchend', (e) => {
+        document.getElementById('container').addEventListener('touchend', (e) => {
+            // スワイプ終了時にx軸とy軸の移動量を取得
+            // 左スワイプに対応するためMath.abs()で+に変換
+            const distanceX = Math.abs(endX - startX)
+            const distanceY = Math.abs(endX - startY)
+
+            // 左右のスワイプ距離の方が上下より長い && 小さなスワイプは検知しないようにする
+            if (distanceX > distanceY && distanceX > minimumDistance) {
+                // スワイプ後の動作
+                // console.log('左右スワイプ')
+                // 右にスワイプしたとき右に移動
+                if (this.valid(1, 0) && (endX > startX)) this.mino.x++;
+                // 左にスワイプしたとき左に移動
+                if (this.valid(-1, 0) && (startX > endX)) this.mino.x--;
+            }
+
+            // 上下のスワイプ距離の方が左右より長い && 小さなスワイプは検知しないようにする
+            if (distanceX < distanceY && distanceY > minimumDistance) {
+                // スワイプ後の動作
+                // console.log('上下スワイプ')
+                // alert('上下スワイプ');
+                if (this.valid(0, 1)) this.mino.y++;
+            }
+            this.drawAll();
+            // イベントの伝播を止める
+            e.stopImmediatePropagation();
+        });
+    }
+
 }
 
-class Block{
+class Block {
     // 基準地点からの座標
     // 移動中 ⇒ Minoの左上
     // 配置後 ⇒ Fieldの左上
-    constructor(x, y, type){
+    constructor(x, y, type) {
         this.x = x
         this.y = y
-        
+
         // 描画しないときはタイプを指定しない
-        if(type >= 0) this.setType(type)
+        if (type >= 0) this.setType(type)
     }
 
-    setType(type){
+    setType(type) {
         this.type = type
         this.image = Asset.blockImages[type]
     }
 
     // Minoに属するときは、Minoの位置をオフセットに指定
     // Fieldに属するときは、(0,0)を起点とするので不要
-    draw(offsetX = 0, offsetY = 0, ctx){
+    draw(offsetX = 0, offsetY = 0, ctx) {
         let drawX = this.x + offsetX
         let drawY = this.y + offsetY
 
         // 画面外は描画しない
-        if(drawX >= 0 && drawX < COLS_COUNT &&
-           drawY >= 0 && drawY < ROWS_COUNT){
+        if (drawX >= 0 && drawX < COLS_COUNT &&
+            drawY >= 0 && drawY < ROWS_COUNT) {
             ctx.drawImage(
-                this.image, 
-                drawX * BLOCK_SIZE, 
+                this.image,
+                drawX * BLOCK_SIZE,
                 drawY * BLOCK_SIZE,
-                BLOCK_SIZE, 
+                BLOCK_SIZE,
                 BLOCK_SIZE
             )
         }
@@ -215,10 +300,10 @@ class Block{
 
     // 次のミノを描画する
     // タイプごとに余白を調整して、中央に表示
-    drawNext(ctx){
+    drawNext(ctx) {
         let offsetX = 0
         let offsetY = 0
-        switch(this.type){
+        switch (this.type) {
             case 0:
                 offsetX = 0.5
                 offsetY = 0
@@ -234,185 +319,191 @@ class Block{
         }
 
         ctx.drawImage(
-            this.image, 
-            (this.x + offsetX) * BLOCK_SIZE, 
+            this.image,
+            (this.x + offsetX) * BLOCK_SIZE,
             (this.y + offsetY) * BLOCK_SIZE,
-            BLOCK_SIZE, 
+            BLOCK_SIZE,
             BLOCK_SIZE
         )
     }
 }
 
-class Mino{
-    constructor(){
+class Mino {
+    constructor() {
         this.type = Math.floor(Math.random() * 7);
         this.initBlocks()
     }
 
-    initBlocks(){
+    initBlocks() {
         let t = this.type
-        switch(t){
+        switch (t) {
             case 0: // I型
-                this.blocks = [new Block(0,2,t),new Block(1,2,t),new Block(2,2,t),new Block(3,2,t)]
+                this.blocks = [new Block(0, 2, t), new Block(1, 2, t), new Block(2, 2, t), new Block(3, 2, t)]
                 break;
             case 1: // O型
-                this.blocks = [new Block(1,1,t),new Block(2,1,t),new Block(1,2,t),new Block(2,2,t)]
+                this.blocks = [new Block(1, 1, t), new Block(2, 1, t), new Block(1, 2, t), new Block(2, 2, t)]
                 break;
             case 2: // T型
-                this.blocks = [new Block(1,1,t),new Block(0,2,t),new Block(1,2,t),new Block(2,2,t)]
+                this.blocks = [new Block(1, 1, t), new Block(0, 2, t), new Block(1, 2, t), new Block(2, 2, t)]
                 break;
             case 3: // J型
-                this.blocks = [new Block(1,1,t),new Block(0,2,t),new Block(1,2,t),new Block(2,2,t)]
+                this.blocks = [new Block(1, 1, t), new Block(0, 2, t), new Block(1, 2, t), new Block(2, 2, t)]
                 break;
             case 4: // L型
-                this.blocks = [new Block(2,1,t),new Block(0,2,t),new Block(1,2,t),new Block(2,2,t)]
+                this.blocks = [new Block(2, 1, t), new Block(0, 2, t), new Block(1, 2, t), new Block(2, 2, t)]
                 break;
             case 5: // S型
-                this.blocks = [new Block(1,1,t),new Block(2,1,t),new Block(0,2,t),new Block(1,2,t)]
+                this.blocks = [new Block(1, 1, t), new Block(2, 1, t), new Block(0, 2, t), new Block(1, 2, t)]
                 break;
             case 6: // Z型
-                this.blocks = [new Block(0,1,t),new Block(1,1,t),new Block(1,2,t),new Block(2,2,t)]
+                this.blocks = [new Block(0, 1, t), new Block(1, 1, t), new Block(1, 2, t), new Block(2, 2, t)]
                 break;
-            }
+        }
     }
 
     // フィールドに生成する
-    spawn(){
-        this.x = COLS_COUNT/2 - 2
+    spawn() {
+        this.x = COLS_COUNT / 2 - 2
         this.y = -3
     }
 
     // フィールドに描画する
-    draw(ctx){
+    draw(ctx) {
         this.blocks.forEach(block => {
             block.draw(this.x, this.y, ctx)
         })
     }
 
     // 次のミノを描画する
-    drawNext(ctx){
+    drawNext(ctx) {
         this.blocks.forEach(block => {
             block.drawNext(ctx)
         })
     }
-    
+
     // 回転させる
-    rotate(){
-        this.blocks.forEach(block=>{
+    rotate() {
+        this.blocks.forEach(block => {
             let oldX = block.x
             block.x = block.y
-            block.y = 3-oldX
+            block.y = 3 - oldX
         })
     }
 
     // 次に移動しようとしている位置の情報を持ったミノを生成
     // 描画はせず、移動が可能かどうかの判定に使用する
-    getNewBlocks(moveX, moveY, rot){
-        let newBlocks = this.blocks.map(block=>{
+    getNewBlocks(moveX, moveY, rot) {
+        let newBlocks = this.blocks.map(block => {
             return new Block(block.x, block.y)
         })
         newBlocks.forEach(block => {
             // 移動させる場合
-            if(moveX || moveY){
+            if (moveX || moveY) {
                 block.x += moveX
                 block.y += moveY
             }
 
             // 回転させる場合
-            if(rot){
+            if (rot) {
                 let oldX = block.x
                 block.x = block.y
-                block.y = 3-oldX
+                block.y = 3 - oldX
             }
 
             // グローバル座標に変換
             block.x += this.x
             block.y += this.y
         })
-        
+
         return newBlocks
     }
 }
 
-class Field{
-    constructor(){
+class Field {
+    constructor() {
         this.blocks = []
     }
 
-    drawFixedBlocks(ctx){
+    drawFixedBlocks(ctx) {
         this.blocks.forEach(block => block.draw(0, 0, ctx))
     }
+    //ブロックを消す処理？多分
+    checkLine() {
+        for (var r = 0; r < ROWS_COUNT; r++) {
+            var c = this.blocks.filter(block => block.y === r).length
+            if (c === COLS_COUNT) {
+                this.blocks = this.blocks.filter(block => block.y !== r)
+                this.blocks.filter(block => block.y < r).forEach(upper => upper.y++)
+                
+                // 例：id="point" のテキストを変更する
+                let l_scoreDom = document.getElementById("user_score");
+                // 現在のスコアを取得
+                let l_newScore = l_scoreDom.innerHTML;
+               
+                l_newScore = parseInt(l_newScore) + 100;
+        
+                // ハイスコアの表示を更新
+                l_scoreDom.innerHTML = l_newScore;
+                // 例：id="point" のテキストを変更する
+                let l_highscoreDom = document.getElementById("highscore");
+                // 現在のスコアを取得
+                let l_highscore = l_highscoreDom.innerHTML;
 
-    checkLine(){
-      for(var r = 0; r < ROWS_COUNT; r++){
-        var c = this.blocks.filter(block => block.y === r).length
-        if(c === COLS_COUNT){
-          this.blocks = this.blocks.filter(block => block.y !== r)
-          this.blocks.filter(block => block.y < r).forEach(upper => upper.y++)
+                if(l_newScore>l_highscore){
+                    // ハイスコアの更新DB呼び出し
+                    let user_id = document.getElementById("user_id").innerHTML;
+                    updatePoint(user_id);
+                    // ハイスコア表示は非同期で更新される
+
+                }
+            }
         }
-      }
     }
 
-    has(x, y){
+    has(x, y) {
         return this.blocks.some(block => block.x == x && block.y == y)
     }
 }
 
-// タップ時の誤動作を防ぐためのスワイプ時の処理を実行しない最小距離
-const minimumDistance = 30
-// スワイプ開始時の座標
-let startX = 0
-let startY = 0
-// スワイプ終了時の座標
-let endX = 0
-let endY = 0
+function updatePoint(user_id) {
+    // ここに処理を追加してください
+    // 例：id="point" のテキストを変更する
+    let scoreDom = document.getElementById("user_score");
+    // 現在のスコアを取得
+    let newScore = scoreDom.innerHTML;
+    // ハイスコア表示覧(DB更新後に値を変える)
+    let highscoreDom = document.getElementById("highscore");
 
-// 解説①：移動を開始した座標を取得
-window.addEventListener('touchstart', (e) =>  {
-  startX = e.touches[0].pageX
-  startY = e.touches[0].pageY
-  if( !tapCount ) {
-    ++tapCount ;
+    // FormDataオブジェクトを作成
+    var formData = new FormData();
 
-    setTimeout( function() {
-        tapCount = 0 ;
-    }, 350 ) ;
+    // データを追加
+    formData.append("user_id", user_id);
+    formData.append("newscore", newScore);
+    // formData.append("key2", "value2");
 
-// ダブルタップ判定
-} else {
-    e.preventDefault() ;
-    tapCount = 0 ;
+    // Fetch APIを使用してPOSTリクエストを送信
+    fetch('https://team4.nikita.jp/backend/updatePoint.php', {
+        method: 'POST',  // メソッドを指定
+        body: formData  // ボディにFormDataを設定
+    })
+        // レスポンスを画面にセット
+        .then(response => {
+            //PromiseResult:Response
+            let text = response.text();
+            // console.log(text);
+            text.then(response2 => {
+                //PromiseResult:戻り値
+                console.log(response2);
+                // JSON形式の文字列が戻り値なので、オブジェクトに変換
+                let obj = JSON.parse(response2);
+                // ハイスコア表示を更新
+                highscoreDom.innerHTML = obj.nowScore;
+            });
+        }).catch(error => {
+            console.log(error);
+        });
+
+
+    // alert(newScore);
 }
-this.blocks.forEach(block=>{
-    let oldX = block.x
-    block.x = block.y
-    block.y = 3-oldX
-})
-})
-
-// 解説②：移動した座標を取得
-window.addEventListener('touchmove', (e) =>  {
-  endX = e.changedTouches[0].pageX
-  endY = e.changedTouches[0].pageY
-})
-
-
-// 解説③：移動距離から左右or上下の処理を実行
-window.addEventListener('touchend', (e) =>  {
-  // スワイプ終了時にx軸とy軸の移動量を取得
-  // 左スワイプに対応するためMath.abs()で+に変換
-  const distanceX = Math.abs(endX - startX)
-  const distanceY = Math.abs(endX - startY)
-
-  // 左右のスワイプ距離の方が上下より長い && 小さなスワイプは検知しないようにする
-  if (distanceX > distanceY && distanceX > minimumDistance) {
-    // スワイプ後の動作
-    console.log('左右スワイプ')
-  }
-  
-  // 上下のスワイプ距離の方が左右より長い && 小さなスワイプは検知しないようにする
-  if (distanceX < distanceY && distanceY > minimumDistance) {
-    // スワイプ後の動作
-    console.log('上下スワイプ')
-  }
-})
