@@ -434,7 +434,7 @@ class Field {
             if (c === COLS_COUNT) {
                 this.blocks = this.blocks.filter(block => block.y !== r)
                 this.blocks.filter(block => block.y < r).forEach(upper => upper.y++)
-                alert(123);
+                alert("123");
             }
         }
     }
