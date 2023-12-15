@@ -2,7 +2,7 @@
 session_start();
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="jp">
 
 <head>
     <meta charset="UTF-8">
@@ -11,7 +11,7 @@ session_start();
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #7F00FF;
+            background-color: #7C00FF;
             color: #FFFFFF;
             text-align: center;
             padding-top: 100px;
@@ -35,7 +35,7 @@ session_start();
 
 <body>
     <div class="form-container">
-        <h2>Login</h2>
+        <h2>新規登録</h2>
         <?php if (isset($_SESSION['createError'])) { ?>
             <p class="alert alert-danger"><?php echo $_SESSION['createError']; ?></p>
         <?php
