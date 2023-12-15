@@ -109,7 +109,7 @@ class Game{
             alert("ゲームオーバー")
             let highScore = parseInt(document.getElementById("highscore").substring(7));
             let userScore = parseInt(document.getElementById("user_score").substring(5));
-            if(highScore > userScore){
+            if(userScore > highScore){
                 const user_id = document.getElementById("userid");
                 updatePoint(user_id);
             }
