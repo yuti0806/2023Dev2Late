@@ -38,6 +38,8 @@ if (!isset($_SESSION['user_id'])) {
           $_SESSION['user_score'] = 0; // 今回の得点初期値
           echo '<p id="userid" type="hidden">'.$_SESSION['user_id'].'</p>';
           ?>
+          ハイスコア<div id="highscore"><?=$highscore?></div>
+          現在のスコア<div id="user_score"><?=$_SEESION['user_score']?></div>
         <canvas id="main-canvas" class="float-end"></canvas>
       </div>
       <div class="col-4">
