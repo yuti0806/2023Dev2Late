@@ -442,8 +442,13 @@ class Field {
                
                 l_newScore = parseInt(l_newScore) + 100;
         
-                // 現在のスコアの表示を更新
+                // ハイスコアの表示を更新
                 l_scoreDom.innerHTML = l_newScore;
+                // 例：id="point" のテキストを変更する
+                let l_highscoreDom = document.getElementById("highscore");
+                // 現在のスコアを取得
+                let l_highscore = l_highscoreDom.innerHTML;
+
                 if(l_newScore>l_highscore){
                     // ハイスコアの更新DB呼び出し
                     let user_id = document.getElementById("user_id").innerHTML;
