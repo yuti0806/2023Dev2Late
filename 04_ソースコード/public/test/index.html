@@ -36,9 +36,10 @@ if (!isset($_SESSION['user_id'])) {
           $cls = new DBmng();
           $highscore = $cls->getUserScoreById($_SESSION['user_id'], $pdo);
           $_SESSION['user_score'] = 0; // 今回の得点初期値
+          $user_score = $_SESSION['user_score'];
           ?>
           ハイスコア<div id="highscore"><?=$highscore?></div>
-          現在のスコア<div id="user_score"><?=$_SEESION['user_score']?></div>
+          現在のスコア<div id="user_score"><?=$user_score?></div>
         <canvas id="main-canvas" class="float-end"></canvas>
       </div>
       <div class="col-4">
