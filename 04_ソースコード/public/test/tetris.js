@@ -438,7 +438,7 @@ class Field {
                 // 例：id="point" のテキストを変更する
                 let l_scoreDom = document.getElementById("user_score");
                 // 現在のスコアを取得
-                let l_newScore = scoreDom.value;
+                let l_newScore = l_scoreDom.value;
                 l_newScore = parseInt(l_newScore) + 100;
                 alert(l_newScore);
                 // 現在のスコアの表示を更新
