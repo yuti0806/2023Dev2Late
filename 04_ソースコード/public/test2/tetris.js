@@ -16,7 +16,9 @@ const BLOCK_SOURCES = [
         "images/block-4.png",
         "images/block-5.png",
         "images/block-6.png"
-    ]
+]
+const user_id = document.getElementById("userid");
+const highScore = document.getElementById("highscore");
 
 window.onload = function(){
   Asset.init()
@@ -107,12 +109,6 @@ class Game{
             this.drawAll()
             clearInterval(this.timer)
             alert("ゲームオーバー")
-            let highScore = parseInt(document.getElementById("highscore").substring(7));
-            let userScore = parseInt(document.getElementById("user_score").substring(5));
-            if(userScore > highScore){
-                const user_id = document.getElementById("userid");
-                updatePoint(user_id);
-            }
         }
     }
 
@@ -355,6 +351,10 @@ class Field{
         if(c === COLS_COUNT){
           this.blocks = this.blocks.filter(block => block.y !== r)
           this.blocks.filter(block => block.y < r).forEach(upper => upper.y++)
+          let userScore = document.getElementById("user_score");
+          if(userScore > highScore){
+              updatePoint(user_id);
+          }
         }
       }
     }
