@@ -109,7 +109,7 @@ class Game{
             alert("ゲームオーバー")
             let highScore = parseInt(document.getElementById("highscore").substring(7));
             let userScore = parseInt(document.getElementById("user_score").substring(5));
-            if(highScore > userScore){
+            if(userScore > highScore){
                 const user_id = document.getElementById("userid");
                 updatePoint(user_id);
             }
@@ -365,13 +365,11 @@ class Field{
 }
 
 function updatePoint(user_id) {
-    // ここに処理を追加してください
-    // 例：id="point" のテキストを変更する
-    let scoreDom = document.getElementById("userScore");
+    let scoreDom = document.getElementById("highScore");
     // 現在のスコアを取得
     let newScore = scoreDom.value;
     // 更新後のスコア表示覧
-    let updatedScoreDom = document.getElementById("updatedScore");
+    let updatedScoreDom = document.getElementById("user_Score");
 
     // FormDataオブジェクトを作成
     var formData = new FormData();
