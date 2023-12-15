@@ -427,13 +427,14 @@ class Field {
     drawFixedBlocks(ctx) {
         this.blocks.forEach(block => block.draw(0, 0, ctx))
     }
-
+    //ブロックを消す処理？多分
     checkLine() {
         for (var r = 0; r < ROWS_COUNT; r++) {
             var c = this.blocks.filter(block => block.y === r).length
             if (c === COLS_COUNT) {
                 this.blocks = this.blocks.filter(block => block.y !== r)
                 this.blocks.filter(block => block.y < r).forEach(upper => upper.y++)
+                alert("aa");
             }
         }
     }
