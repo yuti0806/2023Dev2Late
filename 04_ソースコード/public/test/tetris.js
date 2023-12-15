@@ -446,7 +446,7 @@ class Field {
                 l_scoreDom.innerHTML = l_newScore;
                 if(l_newScore>l_highscore){
                     // ハイスコアの更新DB呼び出し
-                    let user_id = document.getElementById("user_id");
+                    let user_id = document.getElementById("user_id").innerHTML;
                     updatePoint(user_id);
                     // ハイスコア表示は非同期で更新される
 
@@ -460,55 +460,12 @@ class Field {
     }
 }
 
-// // タップ時の誤動作を防ぐためのスワイプ時の処理を実行しない最小距離
-// const minimumDistance = 30
-// // スワイプ開始時の座標
-// let startX = 0
-// let startY = 0
-// // スワイプ終了時の座標
-// let endX = 0
-// let endY = 0
-
-// // 解説①：移動を開始した座標を取得
-// window.addEventListener('touchstart', (e) => {
-//     startX = e.touches[0].pageX
-//     startY = e.touches[0].pageY
-//     alert();
-// })
-
-// // 解説②：移動した座標を取得
-// window.addEventListener('touchmove', (e) => {
-//     endX = e.changedTouches[0].pageX
-//     endY = e.changedTouches[0].pageY
-// })
-
-
-// // 解説③：移動距離から左右or上下の処理を実行
-// window.addEventListener('touchend', (e) => {
-//     // スワイプ終了時にx軸とy軸の移動量を取得
-//     // 左スワイプに対応するためMath.abs()で+に変換
-//     const distanceX = Math.abs(endX - startX)
-//     const distanceY = Math.abs(endX - startY)
-
-//     // 左右のスワイプ距離の方が上下より長い && 小さなスワイプは検知しないようにする
-//     if (distanceX > distanceY && distanceX > minimumDistance) {
-//         // スワイプ後の動作
-//         console.log('左右スワイプ')
-//     }
-
-//     // 上下のスワイプ距離の方が左右より長い && 小さなスワイプは検知しないようにする
-//     if (distanceX < distanceY && distanceY > minimumDistance) {
-//         // スワイプ後の動作
-//         console.log('上下スワイプ')
-//     }
-// })
-
 function updatePoint(user_id) {
     // ここに処理を追加してください
     // 例：id="point" のテキストを変更する
     let scoreDom = document.getElementById("user_score");
     // 現在のスコアを取得
-    let newScore = scoreDom.value;
+    let newScore = scoreDom.innerHTML;
     // ハイスコア表示覧(DB更新後に値を変える)
     let highscoreDom = document.getElementById("highscore");
 
