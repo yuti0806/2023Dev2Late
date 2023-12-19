@@ -1,6 +1,9 @@
 >[!NOTE]
 >2班の後期開発用チームリポジトリです
 
+動作URL：
+https://team4.nikita.jp/test/index.html
+
 メンバー
 |アカウント|氏名||
 | -- | -- | -- |

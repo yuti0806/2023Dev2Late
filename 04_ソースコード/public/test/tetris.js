@@ -1,6 +1,7 @@
 const isTouchable = "ontouchstart" in window || (window.DocumentTouch && document instanceof DocumentTouch);
 
 const SATRT_BTN_ID = "start-btn"
+const LOGOUT_BTN_ID = "logout-btn"
 const MAIN_CANVAS_ID = "main-canvas"
 const NEXT_CANVAS_ID = "next-canvas"
 const GAME_SPEED = 500;
@@ -26,6 +27,11 @@ window.onload = function () {
     document.getElementById(SATRT_BTN_ID).onclick = function () {
         game.start()
         this.blur() // ボタンのフォーカスを外す
+    }
+    document.getElementById(LOGOUT_BTN_ID).onclick = function () {
+        this.blur() // ボタンのフォーカスを外す
+        // 処理を引き渡す（画面遷移）
+        window.location.href = "../backend/Logout.php";
     }
 }
 
@@ -434,14 +440,14 @@ class Field {
             if (c === COLS_COUNT) {
                 this.blocks = this.blocks.filter(block => block.y !== r)
                 this.blocks.filter(block => block.y < r).forEach(upper => upper.y++)
-                
+
                 // 例：id="point" のテキストを変更する
                 let l_scoreDom = document.getElementById("user_score");
                 // 現在のスコアを取得
                 let l_newScore = l_scoreDom.innerHTML;
-               
+
                 l_newScore = parseInt(l_newScore) + 100;
-        
+
                 // ハイスコアの表示を更新
                 l_scoreDom.innerHTML = l_newScore;
                 // 例：id="point" のテキストを変更する
@@ -449,7 +455,7 @@ class Field {
                 // 現在のスコアを取得
                 let l_highscore = l_highscoreDom.innerHTML;
 
-                if(l_newScore>l_highscore){
+                if (l_newScore > l_highscore) {
                     // ハイスコアの更新DB呼び出し
                     let user_id = document.getElementById("user_id").innerHTML;
                     updatePoint(user_id);
